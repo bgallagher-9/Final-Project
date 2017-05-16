@@ -1,0 +1,7 @@
+.theaters-container {
+  height: 400px;
+  width: 20vw;
+  border: 1px solid black;
+  float: right;
+  /*display: flex-right;*/
+}
