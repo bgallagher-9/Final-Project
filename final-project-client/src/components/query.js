@@ -10,17 +10,14 @@ class Query extends Component {
     if (evt.keyCode === 13) {
       this.props.querySubmit(evt.target.value);
       evt.target.value = ''
-      // store.dispatch(Object.assign({}, actions.RETURN_CLEAR, console.log('clearing?', actions)));
     }
   }
 
   handleChange(evt) {
     store.dispatch(Object.assign({}, actions.INPUT_CHANGE, { value: evt.target.value }));
-    // console.log(evt.target.value);
   }
 
   render() {
-    // console.log('query', this.props.query)
     return(
       <div>
         <input

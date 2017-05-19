@@ -11,63 +11,93 @@ const router = express.Router();
 
 //User signup and login + authentication
 
-router.get('/api/signup', (req, res, next) => {
-  res.send(data)
-});
+// router.get('/api/signup', (req, res, next) => {
+//   res.send(data)
+// });
+
+require('./authentify.js')(app);
 
 router.post('/api/signup', (req, res, next) => {
-  var username = req.body.username;
-  var password = req.body.password;
+  const username = req.body.username;
+  const password = req.body.password;
+  if (username === '') {
+      return res.send('Please enter a username.');
+    }
+    else if (password === '') {
+      return res.send('Please enter a password.');
+    }
   User.findOne({ username: username }, (err, user) => {
     if (err) { return next(err); }
     if (user) {
-      req.flash("error", "Username already exists.");
-      return res.redirect('/api/signup');
+      return res.send('Username is already in use, please be more creative.');
     }
-    var newUser = new User({
+    const newUser = new User({
       username: username,
       password: password
     });
     newUser.save(next);
   });
 }, passport.authenticate('login', {
-    successRedirect: '/api/',
-    failureRedirect: '/api/signup',
-    failureFlash: true
+    successRedirect: {
+                      '/api/', res.send('Thank you for signing up.')
+                    },
+    failureRedirect: '/api/signup'
+    // failureFlash: true
+
+    //alternative?
+    /*passport.authenticate('login') (req, res) => {
+    res.sendStatus(200);
+    }*/
   })
 );
 
-router.use(( req, res, next) => {
-  res.locals.currentUser = req.user;
-  res.locals.errors = req.flash('error');
-  res.locals.infos = req.flash('info');
-  next();
-});
-
-router.get('/api/login', (req, res, next) => {
-  res.send(data)
-});
+// router.use(( req, res, next) => {
+//   res.locals.currentUser = req.user;
+//   res.locals.errors = req.flash('error');
+//   res.locals.infos = req.flash('info');
+//   next();
+// });
+//
+// router.get('/api/login', (req, res, next) => {
+//   res.send(data)
+// });
 
 router.post('/api/login', passport.authenticate('login', {
-  successRedirect: '/api/',
-  failureRedirect: '/api/login',
-  failureFlash: true
+  successRedirect: {
+                    '/api/', res.send('Thank you for loggin in.')
+                  },
+  failureRedirect: '/api/login'
+  // failureFlash: true
 }));
 
-router.get('/api/logout', (req, res) => {
+router.post('/api/logout', (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.redirect('/login');
 });
 
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
+router.use((req, res, next) => {
+  if (req.isAuthenticated) {
     next();
   }
   else {
-    req.flash("info", "You must be logged in to see this page.");
-    res.redirect('/api/login');
+    res.sendStatus(401);
   }
-}
+});
+
+router.get('/api/authy', (req, res) => {
+  console.log('authy', req.user);
+  res.send(req.user)
+});
+
+// function ensureAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     next();
+//   }
+//   else {
+//     req.flash("info", "You must be logged in to see this page.");
+//     res.redirect('/api/login');
+//   }
+// }
 
 
 

@@ -1,8 +1,15 @@
-import { mainReducer, actions } from './mainsearch-store.js';
-import { createStore } from 'redux';
+import mainReducer from './mainsearch-store.js';
+import authReducer from './auth-store.js';
+import { createStore, combineReducers } from 'redux';
+import actions from './../store/actions.js';
 
 
-const store = createStore(mainReducer);
+const reducer = combineReducers({
+  main: mainReducer,
+  auth: authReducer
+});
+
+const store = createStore(reducer);
 
 module.exports = {
   store: store,

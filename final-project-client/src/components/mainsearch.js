@@ -17,13 +17,14 @@ class MainSearch extends Component {
 
   constructor(){
     super();
-    this.state = store.getState();
+    this.state = store.getState().main;
   }
 
   componentDidMount() {
     store.subscribe(() => {
-      this.setState(store.getState());
+      this.setState(store.getState().main);
     });
+    console.log(this.state);
   }
 
   handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall())
@@ -34,18 +35,15 @@ class MainSearch extends Component {
       // console.log(evt);
   };
 
-
-  // handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall());
-  // }
-
   // handleChange(evt) {
   //   store.dispatch(Object.assign({}, actions.INPUT_CHANGE, { value: evt.target.value }));
   //   // console.log(evt.target.value);
   // }
 
   makeAjaxCall() {
+
     // console.log('pg#', this.state.pageNumber)
-    var currentState = store.getState()
+    var currentState = store.getState().main
     console.log(currentState);
     $.ajax({
 
@@ -126,17 +124,19 @@ class MainSearch extends Component {
 
   handlePrevClick() {
     store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
-    this.makeAjaxCall(this.props.queryInput);
+    this.makeAjaxCall();
       console.log('pnd', this.state.pageNumber)
   }
 
   handleNextClick() {
       store.dispatch(Object.assign({}, actions.INCREMENT_PAGE));
       // console.log('pnu', this.state.pageNumber); this.makeAjaxCall(this.props.queryInput);
-      console.log('state', this.state.pageNumber, store.getState().pageNumber); this.makeAjaxCall();
+      console.log('state', this.state.main.pageNumber, store.getState().pageNumber); this.makeAjaxCall();
   }
 
   render() {
+
+    console.log(this.state);
     let searchResults = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.art !== 'no-image.png') {
@@ -185,13 +185,5 @@ class MainSearch extends Component {
     )
   }
 }
-
-
-// <input type="text"
-//       placeholder="What would you like to search for?" onKeyUp={(evt, input) => this.handleQuery(evt, input)}
-//       onChange={(evt) => this.handleChange(evt)}
-//       value={this.state.queryInput}
-//       querySubmit={(evt) => this.handleQuery(evt)}
-// />
 
 module.exports = MainSearch;
