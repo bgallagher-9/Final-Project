@@ -4,9 +4,10 @@ class SignUp extends Component {
   render() {
     return(
       <div>
+        <h1>Signup and join the greatness!</h1>
         <div className="input-container">
-          <input type=text className="userName"></input>
-          <input type=password className="password"></input>
+          <input type='text' className="userName"></input>
+          <input type='password' className="password"></input>
         </div>
       </div>
 
@@ -14,4 +15,4 @@ class SignUp extends Component {
   }
 }
 
-modules.exports = SignUp;
+module.exports = SignUp;

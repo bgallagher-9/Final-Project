@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import './../scss/main-search.css';
 import $ from 'jquery';
 import { store, actions } from './../store/store.js';
+import Query from './../components/query.js';
 
 const apiKey = '873eb20764b577e3b6adfa6f878f3379';
 
 const baseURL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=`;
 
 const imageURL = `https://image.tmdb.org/t/p/w500`;
+// let totalResults;
+// let url;
+// let pageCount;
 
 class MainSearch extends Component {
 
@@ -22,26 +26,33 @@ class MainSearch extends Component {
     });
   }
 
-  handleQuery(evt) {
-    if (evt.keyCode === 13) {
-      this.makeAjaxCall(this.state.queryInput);
+  handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall())
+      // this.makeAjaxCall(this.state.queryInput);
       // console.log('HQ', this.state.queryInput)
-      store.dispatch(Object.assign({}, actions.RETURN_CLEAR));
-    };
-  }
+      // this.setState ({ query: input });
+      // console.log(input)
+      // console.log(evt);
+  };
 
-  handleChange(evt) {
-    store.dispatch(Object.assign({}, actions.INPUT_CHANGE, { value: evt.target.value }));
-    // console.log(evt.target.value);
-  }
+
+  // handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall());
+  // }
+
+  // handleChange(evt) {
+  //   store.dispatch(Object.assign({}, actions.INPUT_CHANGE, { value: evt.target.value }));
+  //   // console.log(evt.target.value);
+  // }
 
   makeAjaxCall() {
+    // console.log('pg#', this.state.pageNumber)
+    var currentState = store.getState()
+    console.log(currentState);
     $.ajax({
-      url: `${baseURL}/${this.state.queryInput}/&page=${this.state.pageNumber}&include_adult=false`
+
+      url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
     })
     .done((data) => {
-      store.dispatch(Object.assign({}, actions.GET_DATA, {
-        results: data.results }));
+        // console.log(data);
       let fixedData = data.results.map((x) => {
         if (x.media_type === 'movie') {
           if (x.poster_path === null) {
@@ -102,89 +113,85 @@ class MainSearch extends Component {
           }
         }
       })
-      console.log(data)
-      this.setState({
-        results: fixedData
-      });
-      console.log(fixedData)
+      // console.log(data)
+      store.dispatch(Object.assign({}, actions.GET_DATA, {
+        results: fixedData }));
+
+      console.log(fixedData);
+      // totalResults = data.total_results;
+      // pageCount = Math.ceil(totalResults / 20);
+      // console.log(pageCount)
     });
   }
 
-  // handlePrevClick(evt) {
-  //   if (pageNumber <= 1) {
-  //
-  //   }
-  // }
-  //
-  // handleNextClick(evt) {
-  //
-  // }
+  handlePrevClick() {
+    store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
+    this.makeAjaxCall(this.props.queryInput);
+      console.log('pnd', this.state.pageNumber)
+  }
 
-  // handleQuery(evt) {
-  //   if (evt.keyCode === 13) {
-  //     this.makeAjaxCall(this.state.queryInput);
-  //     // console.log('HQ', this.state.queryInput)
-  //     store.dispatch(Object.assign({}, actions.RETURN_CLEAR));
-  //   };
-  // }
+  handleNextClick() {
+      store.dispatch(Object.assign({}, actions.INCREMENT_PAGE));
+      // console.log('pnu', this.state.pageNumber); this.makeAjaxCall(this.props.queryInput);
+      console.log('state', this.state.pageNumber, store.getState().pageNumber); this.makeAjaxCall();
+  }
 
   render() {
-
-
     let searchResults = this.state.results.map((x) => {
-      // let url = `https://image.tmdb.org/t/p/w500/${x.art}`
-      let url = `${imageURL}/${x.art}`
-      // console.log('media type: ', x.media_type);
+      let url = 'no-image.png'
+      if (x.art !== 'no-image.png') {
+        url = `${imageURL}/${x.art}`
+      }
       if (x.media_type === 'person') {
-        // console.log('not person');
         return <li
                 className="searchLis"
                 key={x.id}>
                 <img src={url} alt={x.name} />
-                <p>'Name: '{x.name}</p>
+                <p>Name: {x.name}</p>
               </li>
       }
       else {
-        console.log('not person');
         return <li
                 className="searchLis"
                 key={x.id}>
                 <img src={url} alt={x.name} />
-                <p>'Name: '{x.name}</p>
-                <p>'Overview: '{x.overview}</p>
-                <p>'Date: '{x.date}</p>
+                <p>Name: {x.name}</p>
+                <p>Overview: {x.overview}</p>
+                <p>Date: {x.date}</p>
               </li>
       }
     });
-
-    // console.log(searchResults);
-
     return(
         <div className="main-search-container">
           <div className="input-box">
-            <input type="text"
-                  placeholder="What would you like to search for?" onKeyUp={(evt) => this.handleQuery(evt)}
-                  onChange={(evt) => this.handleChange(evt)}
-                  value={this.state.queryInput}
-            />
+            <Query
+              results={this.state.results}
+              querySubmit={(input) => this.handleQuery(input)}
+              query={this.state.query}
+               />
           </div>
           <ol className="searchOL">
             {searchResults}
           </ol>
           <div className="button-container">
             <div className="page-button prev-button"
-                 onClick={(evt) => this.handlePrevClick(evt)}
+                 onClick={() => this.handlePrevClick()}
                  >previous</div>
             <div className="page-button next-button"
-                 onClick={(evt) => this.handleNextClick(evt)}
+                 onClick={() => this.handleNextClick()}
                  >next</div>
           </div>
         </div>
-
     )
   }
 }
 
 
+// <input type="text"
+//       placeholder="What would you like to search for?" onKeyUp={(evt, input) => this.handleQuery(evt, input)}
+//       onChange={(evt) => this.handleChange(evt)}
+//       value={this.state.queryInput}
+//       querySubmit={(evt) => this.handleQuery(evt)}
+// />
 
 module.exports = MainSearch;
