@@ -4,6 +4,9 @@ const session = require('express-session');
 const passport = require('passport');
 const express = require('express');
 const app = express();
+const bodyParser = require ('body-parser');
+const mongoose = require('mongoose');
+app.use(bodyParser.urlencoded({ extended: false }));
 
 function auth(app) {
   app.use(cookieParser());
@@ -24,7 +27,8 @@ function auth(app) {
       done(err, user)
     });
   });
-
+  app.use(bodyParser.urlencoded({ extended: false }));
+  mongoose.Promise = global.Promise;
   const LocalStrategy = require("passport-local").Strategy;
 
   passport.use("login", new LocalStrategy(function(username, password, done) {
@@ -73,26 +77,28 @@ function auth(app) {
       });
       newUser.save(next);
     });
-  },
-  // passport.authenticate('login', {
-  //     successRedirect:
-  //                       '/api/'
-  //                       // , res.send('Thank you for signing up.')
-  //                     ,
-  //     failureRedirect: '/api/signup'
-      // failureFlash: true
-
-      //alternative?
-      passport.authenticate('login'), (req, res) => {
+  }, passport.authenticate('login'), (req, res) => {
       res.sendStatus(200);
     })
 
-    // app.get('/api/authy', function(req, res) {
-    //   //If the user ia authenticated, express will add the user to the request object. Convenient!
-    //   console.log('authy', req.user);
-    //
-    //   res.send(req.user);
-    // });
+    app.get('/api/authy', function(req, res) {
+      //If the user ia authenticated, express will add the user to the request object. Convenient!
+      console.log('authy', req.user);
+
+      res.send(req.user);
+    });
 }
 
 module.exports = auth;
+
+
+
+// passport.authenticate('login', {
+//     successRedirect:
+//                       '/api/'
+//                       // , res.send('Thank you for signing up.')
+//                     ,
+//     failureRedirect: '/api/signup'
+    // failureFlash: true
+
+    //alternative?
