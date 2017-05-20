@@ -6,23 +6,17 @@ class SignUp extends Component {
 
   constructor(){
     super();
-    this.state = store.getState();
+    this.state = store.getState().auth;
   }
 
   componentDidMount() {
     store.subscribe(() => {
-      this.setState(store.getState());
+      this.setState(store.getState().auth);
     });
   }
 
-  handleSignUp(evt) {
-    if (evt.keyCode === 13) {
-      store.dispatch(Object.assign({}, actions.GET_AUTH_UN, actions.GET_AUTH_PW));
-      this.authAjaxCall()
-    }
-  }
-
   handleUNChange(evt) {
+    // console.log(evt.target.value)
     store.dispatch(Object.assign({}, actions.INPUT_CHANGE_UN, { value: evt.target.value }));
   }
 
@@ -31,30 +25,46 @@ class SignUp extends Component {
   }
 
   handleSignUpClick() {
-    // var stateOfAuth = store.getState()
+    // console.log(this.props);
+
     $.ajax({
       url: '/api/signup',
       method: 'POST',
       data: {
-        username: this.state.unValue,
-        password: this.state.pwValue
-      }
+        username: this.props.unValue,
+        password: this.props.pwValue
+      },
+
     })
+    // console.log(data)
     .done((data) => {
       store.dispatch(Object.assign({}, actions.SUCCESS_LOGIN));
-    })
-    .fail((xhr, error, resonseText) => {
+    //   this.state.history('/');
+
+    // .done((data) => {
+    //   // console.log(data);
+    //   store.dispatch({ type: actions.SUCCESS_LOGIN });
+    //   //Success! Move them to the book list.
+    //   this.props.history.push('/booklist');
+      })
+    .fail((xhr, error, responseText) => {
+      console.log(actions);
+      console.log('xhr', xhr, 'error', error, 'rt', responseText);
       store.dispatch(Object.assign({}, actions.FAIL_LOGIN));
     })
+
   }
 
   render() {
+    console.log(this.state);
     let message;
     if (this.state.failMessage !== '') {
-      message = <div className="failmessage">{this.state.failMessage}</div>
+      message = <div className="failmessage">{this.state.failMessage}
+                </div>
     }
     else if (this.state.successMessage !== '') {
-      message = <div className="successmessage">{this.state.successMessage}</div>
+      message = <div className="successmessage">{this.state.successMessage}
+              </div>
     }
     return(
       <div>
@@ -74,7 +84,6 @@ class SignUp extends Component {
                  onClick={() => this.handleSignUpClick()}>
                Submit
               </button>
-
              {message}
         </div>
       </div>
