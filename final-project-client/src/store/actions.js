@@ -1,32 +1,31 @@
 import constants from './constants.js';
 
 const GET_DATA = { type: constants.GET_DATA };
-// const RETURN_CLEAR = { type: constants.RETURN_CLEAR };
 const INPUT_CHANGE = { type: constants.INPUT_CHANGE };
 const DECREMENT_PAGE = { type: constants.DECREMENT_PAGE };
 const INCREMENT_PAGE = { type: constants.INCREMENT_PAGE };
-// const GET_AUTH_UN = { type: constants.GET_AUTH_UN };
-// const GET_AUTH_PW = { type: constants.GET_AUTH_PW };
-// const RETURN_CLEAR_UN = { type: constants.RETURN_CLEAR_UN };
-const INPUT_CHANGE_UN = { type: constants.INPUT_CHANGE_UN };
-// const RETURN_CLEAR_PW = { type: constants.RETURN_CLEAR_PW };
-const INPUT_CHANGE_PW = { type: constants.INPUT_CHANGE_PW };
-const SUCCESS_LOGIN = { type: constants.SUCCESS_LOGIN };
-const FAIL_LOGIN = { type: constants.FAIL_LOGIN };
+const SIGNUP_CHANGE_UN = { type: constants.SIGNUP_CHANGE_UN };
+const SIGNUP_CHANGE_PW = { type: constants.SIGNUP_CHANGE_PW };
+const SIGNUP_SUCCESS = { type: constants.SIGNUP_SUCCESS };
+const SIGNUP_FAIL = { type: constants.SIGNUP_FAIL };
+const LOGIN_CHANGE_UN = { type: constants.LOGIN_CHANGE_UN };
+const LOGIN_CHANGE_PW = { type: constants.LOGIN_CHANGE_PW };
+const LOGIN_SUCCESS = { type: constants.LOGIN_SUCCESS };
+const LOGIN_FAIL = { type: constants.LOGIN_FAIL };
 
 const actions = {
-  // GET_AUTH_UN: GET_AUTH_UN,
-  // GET_AUTH_PW: GET_AUTH_PW,
-  // RETURN_CLEAR_UN: RETURN_CLEAR_UN,
-  // RETURN_CLEAR_PW: RETURN_CLEAR_PW,
-  INPUT_CHANGE_UN: INPUT_CHANGE_UN,
-  INPUT_CHANGE_PW: INPUT_CHANGE_PW,
+  SIGNUP_CHANGE_UN: SIGNUP_CHANGE_UN,
+  SIGNUP_CHANGE_PW: SIGNUP_CHANGE_PW,
   GET_DATA: GET_DATA,
   INPUT_CHANGE: INPUT_CHANGE,
   INCREMENT_PAGE: INCREMENT_PAGE,
   DECREMENT_PAGE: DECREMENT_PAGE,
-  SUCCESS_LOGIN: SUCCESS_LOGIN,
-  FAIL_LOGIN: FAIL_LOGIN,
+  SIGNUP_SUCCESS: SIGNUP_SUCCESS,
+  SIGNUP_FAIL: SIGNUP_FAIL,
+  LOGIN_CHANGE_UN: LOGIN_CHANGE_UN,
+  LOGIN_CHANGE_PW: LOGIN_CHANGE_PW,
+  LOGIN_SUCCESS: LOGIN_SUCCESS,
+  LOGIN_FAIL: LOGIN_FAIL,
 }
 
 module.exports = actions;

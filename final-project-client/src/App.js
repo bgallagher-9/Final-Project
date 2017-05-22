@@ -24,6 +24,7 @@ const Home = () => (
 )
 
 class NavBar extends Component {
+  
   render() {
     return(
         <div>

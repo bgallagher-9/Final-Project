@@ -3,37 +3,43 @@ import constants from './constants.js';
 const authState = {
   unValue: '',
   pwValue: '',
-  successMessage: '',
-  failMessage: ''
+  signUpSuccessMessage: '',
+  signUpfailMessage: '',
+  loginSuccessMessage: '',
+  loginFailMessage: '',
+  isLoggedOn: false
 }
 
 const reducer = (state = authState, action) => {
   switch(action.type) {
-    // case constants.GET_AUTH_UN:
-    //   return Object.assign({}, state, { data: action.data });
-    // case constants.RETURN_CLEAR_UN:
-    //   return Object.assign({}, state, { unValue: '' });
-    case constants.INPUT_CHANGE_UN:
+    case constants.SIGNUP_CHANGE_UN:
       return Object.assign({}, state, { unValue: action.value });
-    // case constants.GET_AUTH_PW:
-    //   return Object.assign({}, state, { data: action.data });
-    // case constants.RETURN_CLEAR_PW:
-    //   return Object.assign({}, state, { pwValue: '' });
-    case constants.INPUT_CHANGE_PW:
+    case constants.SIGNUP_CHANGE_PW:
       return Object.assign({}, state, { pwValue: action.value });
-    case constants.SUCCESS_LOGIN:
+    case constants.SIGNUP_SUCCESS:
       return Object.assign({}, state, {
-        // unValue: '',
-        // pwValue: '',
-        successMessage: 'Thank you for logging up',
-        failMessage: ''
-      }, console.log(state))
-    case constants.FAIL_LOGIN:
+        unValue: '',
+        pwValue: '',
+      signUpSuccessMessage: 'Thank you for signing up! Greatness awaits you!',
+        signUpfailMessage: '',
+        isLoggedOn: true
+      })
+    case constants.SIGNUP_FAIL:
+      return Object.assign({}, state, { signUpfailMessage: action.message });
+    case constants.LOGIN_CHANGE_UN:
+      return Object.assign({}, state, { unValue: action.value });
+    case constants.LOGIN_CHANGE_PW:
+      return Object.assign({}, state, { pwValue: action.value });
+    case constants.LOGIN_SUCCESS:
       return Object.assign({}, state, {
-        // unValue: '',
-        // pwValue: '',
-        successMessage: '',
-        failMessage: 'Something went wrong.  Please try again' })
+        unValue: '',
+        pwValue: '',
+      loginSuccessMessage: 'Thank you for logging in! Your cranial power has just levelled up!',
+        loginFailMessage: '',
+        isLoggedOn: true
+      });
+    case constants.LOGIN_FAIL:
+      return Object.assign({}, state, { loginFailMessage: action.message });
       default:
         return state;
   }
