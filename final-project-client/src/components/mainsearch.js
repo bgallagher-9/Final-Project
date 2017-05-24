@@ -3,15 +3,17 @@ import './../scss/main-search.css';
 import $ from 'jquery';
 import { store, actions } from './../store/store.js';
 import Query from './../components/query.js';
+// import Pagination from "react-js-pagination";
+// require("bootstrap/less/bootstrap.less");
 
 const apiKey = '873eb20764b577e3b6adfa6f878f3379';
 
 const baseURL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=`;
 
 const imageURL = `https://image.tmdb.org/t/p/w500`;
-// let totalResults;
+// var totalResults;
 // let url;
-// let pageCount;
+// var pageCount;
 
 class MainSearch extends Component {
 
@@ -21,18 +23,17 @@ class MainSearch extends Component {
   }
 
   componentDidMount() {
-    store.subscribe(() => {
+    this.unsub = store.subscribe(() => {
       this.setState(store.getState().main);
     });
-    console.log(this.state);
+    // console.log(this.state);
   }
 
-  handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall())
-      // this.makeAjaxCall(this.state.queryInput);
-      // console.log('HQ', this.state.queryInput)
-      // this.setState ({ query: input });
-      // console.log(input)
-      // console.log(evt);
+  componentWillUnmount() {
+    this.unsub();
+  }
+
+  handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall());
   };
 
   // handleChange(evt) {
@@ -41,12 +42,10 @@ class MainSearch extends Component {
   // }
 
   makeAjaxCall() {
-
     // console.log('pg#', this.state.pageNumber)
     var currentState = store.getState().main
-    console.log(currentState);
+    // console.log(currentState);
     $.ajax({
-
       url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
     })
     .done((data) => {
@@ -113,30 +112,74 @@ class MainSearch extends Component {
       })
       // console.log(data)
       store.dispatch(Object.assign({}, actions.GET_DATA, {
-        results: fixedData }));
+        results: fixedData,
+        totalItemsCount: data.total_results
+        }));
 
-      console.log(fixedData);
+      // console.log(fixedData);
       // totalResults = data.total_results;
       // pageCount = Math.ceil(totalResults / 20);
-      // console.log(pageCount)
+      // // console.log(pageCount)
     });
   }
+
+  // handlePageChange(pageNumber) {
+  //   // console.log(`active page is ${pageNumber}`);
+  //   // this.setState({activePage: pageNumber});
+  //   store.dispatch(Object.assign({}, actions.PAGINATION));
+  // }
+
+//   render() {
+//   return (
+//     <Pagination
+//       hideDisabled
+//       activePage={this.state.activePage}
+//       itemsCountPerPage={PER_PAGE}
+//       totalItemsCount={TOTAL_COUNT}
+//       onChange={this.handlePageChange}
+//       />
+//      );
+//     }
 
   handlePrevClick() {
     store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
     this.makeAjaxCall();
+    window.scrollTo(0, 0);
       console.log('pnd', this.state.pageNumber)
   }
 
   handleNextClick() {
       store.dispatch(Object.assign({}, actions.INCREMENT_PAGE));
-      // console.log('pnu', this.state.pageNumber); this.makeAjaxCall(this.props.queryInput);
-      console.log('state', this.state.main.pageNumber, store.getState().pageNumber); this.makeAjaxCall();
+      this.makeAjaxCall();
+      window.scrollTo(0, 0);
   }
+
+  addToFavorites(x, evt){
+    evt.stopPropagation();
+    $.ajax({
+      url: '/api/favorite',
+      method: 'POST',
+      data: {
+        name: x.name,
+        id: x.id,
+        art: x.art
+      }
+    })
+    .done((data) => {});
+    // store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES));
+  }
+
+  // $.ajax({
+  //       url: '/api/book',
+  //       method: 'POST',
+  //       data: submittedData
+  //     })
+  //     .done((data) => {
+  //       store.dispatch({ type: actions.SAVE_NEW_BOOK, book: data });
+  //     });
 
   render() {
 
-    console.log(this.state);
     let searchResults = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.art !== 'no-image.png') {
@@ -146,6 +189,8 @@ class MainSearch extends Component {
         return <li
                 className="searchLis"
                 key={x.id}>
+                <div className="favoritesItem"
+                  onClick={(evt) => this.addToFavorites(x, evt)}></div>
                 <img src={url} alt={x.name} />
                 <p>Name: {x.name}</p>
               </li>
@@ -154,10 +199,13 @@ class MainSearch extends Component {
         return <li
                 className="searchLis"
                 key={x.id}>
+                <div className="favoritesItem"
+                  onClick={(evt) => this.addToFavorites(x, evt)}></div>
                 <img src={url} alt={x.name} />
                 <p>Name: {x.name}</p>
                 <p>Overview: {x.overview}</p>
                 <p>Date: {x.date}</p>
+
               </li>
       }
     });
@@ -173,6 +221,7 @@ class MainSearch extends Component {
           <ol className="searchOL">
             {searchResults}
           </ol>
+
           <div className="button-container">
             <div className="page-button prev-button"
                  onClick={() => this.handlePrevClick()}
@@ -181,9 +230,22 @@ class MainSearch extends Component {
                  onClick={() => this.handleNextClick()}
                  >next</div>
           </div>
+
         </div>
     )
   }
 }
 
 module.exports = MainSearch;
+
+
+
+
+
+// <Pagination className="users-pagination pull-right" bsSize="medium"
+//   hideDisabled
+//   activePage={this.state.activePage}
+//   itemsCountPerPage={this.state.itemsCountPerPage}
+//   totalItemsCount={this.state.totalItemsCount}
+//   onChange={this.handlePageChange}
+//   />

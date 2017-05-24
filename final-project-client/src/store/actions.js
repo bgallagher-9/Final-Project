@@ -12,6 +12,8 @@ const LOGIN_CHANGE_UN = { type: constants.LOGIN_CHANGE_UN };
 const LOGIN_CHANGE_PW = { type: constants.LOGIN_CHANGE_PW };
 const LOGIN_SUCCESS = { type: constants.LOGIN_SUCCESS };
 const LOGIN_FAIL = { type: constants.LOGIN_FAIL };
+const LOGOUT = { type: constants.LOGOUT };
+const GET_FAVORITES = { type: constants.GET_FAVORITES};
 
 const actions = {
   SIGNUP_CHANGE_UN: SIGNUP_CHANGE_UN,
@@ -26,6 +28,8 @@ const actions = {
   LOGIN_CHANGE_PW: LOGIN_CHANGE_PW,
   LOGIN_SUCCESS: LOGIN_SUCCESS,
   LOGIN_FAIL: LOGIN_FAIL,
+  LOGOUT: LOGOUT,
+  GET_FAVORITES: GET_FAVORITES
 }
 
 module.exports = actions;

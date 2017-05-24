@@ -1,7 +1,7 @@
 .main-search-container {
   height: 400px;
   width: 50vw;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   margin-left: 5vw;
   display: inline-flex;
   flex-direction: column;
@@ -32,7 +32,23 @@ input {
 }
 
 .searchOL {
+  /*border: 1px solid black;*/
+}
+
+.favoritesItem {
+  height: 15px;
+  width: 15px;
   border: 1px solid black;
+  border-radius: 5px;
+  float: right;
+  display: inline;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+li {
+  border: 1px solid black;
+  margin-top: 5px;
 }
 
 li img {

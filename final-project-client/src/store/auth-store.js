@@ -7,7 +7,8 @@ const authState = {
   signUpfailMessage: '',
   loginSuccessMessage: '',
   loginFailMessage: '',
-  isLoggedOn: false
+  isLoggedOn: false,
+  welcomeName: ''
 }
 
 const reducer = (state = authState, action) => {
@@ -22,7 +23,8 @@ const reducer = (state = authState, action) => {
         pwValue: '',
       signUpSuccessMessage: 'Thank you for signing up! Greatness awaits you!',
         signUpfailMessage: '',
-        isLoggedOn: true
+        isLoggedOn: true,
+        welcomeName: state.unValue
       })
     case constants.SIGNUP_FAIL:
       return Object.assign({}, state, { signUpfailMessage: action.message });
@@ -32,14 +34,27 @@ const reducer = (state = authState, action) => {
       return Object.assign({}, state, { pwValue: action.value });
     case constants.LOGIN_SUCCESS:
       return Object.assign({}, state, {
+        welcomeName: state.unValue,
         unValue: '',
         pwValue: '',
       loginSuccessMessage: 'Thank you for logging in! Your cranial power has just levelled up!',
         loginFailMessage: '',
-        isLoggedOn: true
+        isLoggedOn: true,
+
       });
     case constants.LOGIN_FAIL:
       return Object.assign({}, state, { loginFailMessage: action.message });
+    case constants.LOGOUT:
+      return Object.assign({} ,state, {
+        unValue: '',
+        pwValue: '',
+        signUpSuccessMessage: '',
+        signUpfailMessage: '',
+        loginSuccessMessage: '',
+        loginFailMessage: '',
+        isLoggedOn: false,
+        welcomeName: ''
+       })
       default:
         return state;
   }

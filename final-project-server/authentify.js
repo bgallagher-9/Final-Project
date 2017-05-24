@@ -142,6 +142,7 @@ function auth(app) {
       User.findOne({ username: username }, (err, user) => {
         if (err) { return done(err); }
         if (!user) {
+          console.log('passport !user');
           return done(null, false, { message: 'unknown username' });
         }
         user.checkPassword(password, (err, isMatch) => {
@@ -150,6 +151,7 @@ function auth(app) {
             return done(null, user);
           }
           else {
+            console.log('passport else');
             return done(null, false, { message: 'invalid password' });
           }
         });

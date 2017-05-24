@@ -4,6 +4,8 @@
   border: 1px solid black;
 }*/
 
-.div-container {
-  
+.name {
+  color: white;
+  /*border: 2px red solid;*/
+  display: inline;
 }
