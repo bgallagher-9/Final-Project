@@ -26,11 +26,6 @@ class MainSearch extends Component {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().main);
     });
-    // if (this.props.match.params.id !== undefined) {
-    //   store.dispatch({ type: actions.START_BOOK_EDIT, bookId: this.props.match.params.id });
-    // }
-    // console.log(this.state);
-    // console.log('this', this);
   }
 
   componentWillUnmount() {
@@ -40,32 +35,15 @@ class MainSearch extends Component {
   handleQuery(input) {
     store.dispatch(Object.assign({}, actions.QUERY_HANDLE));
      this.makeAjaxCall();
-     console.log('query?')
   };
-  // handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall());
-  // };
-
-  // handlePrevClick() {
-  //   store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
-  //   this.makeAjaxCall();
-  //   window.scrollTo(0, 0);
-  //     console.log('pnd', this.state.pageNumber)
-  // }
-
-  // handleChange(evt) {
-  //   store.dispatch(Object.assign({}, actions.INPUT_CHANGE, { value: evt.target.value }));
-  //   // console.log(evt.target.value);
-  // }
 
   makeAjaxCall() {
     // console.log('pg#', this.state.pageNumber)
     var currentState = store.getState().main
-    // console.log(currentState);
     $.ajax({
       url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
     })
     .done((data) => {
-        console.log('main ajax', data);
       let fixedData = data.results.map((x) => {
         if (x.media_type === 'movie') {
           if (x.poster_path === null) {
@@ -129,13 +107,10 @@ class MainSearch extends Component {
         return null;
       }
       })
-      // console.log(data)
       store.dispatch(Object.assign({}, actions.GET_DATA, {
         results: fixedData,
         totalItemsCount: data.total_results
         }));
-
-      // console.log(fixedData);
       // totalResults = data.total_results;
       // pageCount = Math.ceil(totalResults / 20);
       // // console.log(pageCount)
@@ -158,7 +133,7 @@ class MainSearch extends Component {
     store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
     this.makeAjaxCall();
     window.scrollTo(0, 0);
-      console.log('pnd', this.state.pageNumber)
+      // console.log('pnd', this.state.pageNumber)
   }
 
   handleNextClick() {
@@ -168,9 +143,7 @@ class MainSearch extends Component {
   }
 
   addToFavorites(x, evt){
-    console.log('id?', this.props.main)
-    // console.log('id?', this.props.match.params.id)
-    // evt.stopPropagation();
+    console.log(x.name, 'added to favorites')
     $.ajax({
       url: '/api/favorite',
       method: 'POST',
@@ -180,12 +153,14 @@ class MainSearch extends Component {
         art: x.art
       }
     })
-    .done((data) => {});
-    // store.dispatch(Object.assign({}, actions.xxx_xxxx_xxx));
+    .done((data) => {
+      console.log('data from add to faves ajax1', data)
+      store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
+      console.log('data from add to faves ajax2', data)
+    });
   }
 
   render() {
-    // console.log('render data', this.)
     let searchResults = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.art !== 'no-image.png') {
@@ -227,7 +202,6 @@ class MainSearch extends Component {
           <ol className="searchOL">
             {searchResults}
           </ol>
-
           <div className="button-container">
             <div className="page-button prev-button"
                  onClick={() => this.handlePrevClick()}

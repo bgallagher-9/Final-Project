@@ -1,7 +1,10 @@
 .favorites-container {
   height: 400px;
   width: 20vw;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   float: left;
+  /*position: fixed;
+  left: 0;
+  top: 75px;*/
   /*display: inline-flex;*/
 }

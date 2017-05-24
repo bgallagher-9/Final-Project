@@ -4,7 +4,6 @@ import favReducer from './favorites-store.js';
 import { createStore, combineReducers } from 'redux';
 import actions from './../store/actions.js';
 
-
 const reducer = combineReducers({
   main: mainReducer,
   auth: authReducer,

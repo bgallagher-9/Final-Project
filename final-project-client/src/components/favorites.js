@@ -3,8 +3,6 @@ import $ from 'jquery';
 import { store, actions } from './../store/store.js';
 import './../scss/favorites.css';
 
-
-
 class FavoritesList extends Component {
 
   constructor() {
@@ -22,6 +20,7 @@ class FavoritesList extends Component {
       })
       .done((data) => {
         store.dispatch(Object.assign({}, actions.GET_FAVORITES, { favorites: data }));
+        console.log('data from faves.done', data)
       });
     }
   }
@@ -31,16 +30,15 @@ class FavoritesList extends Component {
   }
 
   render() {
-    // console.log(this.state);
-    // console.log(this.props);
+    console.log(this.state);
     const faves = this.state.favorites.map((x, i) => {
-      // console.log('x', x)
       return <li key={x.idMedia + i} >
         {x.nameMedia}
       </li>
     })
     return(
         <div>
+          Your Favorites!
           <div className="favorites-container">
             <ol>
               {faves}

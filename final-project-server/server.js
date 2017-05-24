@@ -16,33 +16,36 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 require('./authentify.js')(app);
 
+function favoriteParse(favorites) {
+  return {
+    id: favorites._id,
+    nameMedia: favorites.nameMedia,
+    idMedia: favorites.idMedia,
+    artMedia: favorites.artMedia
+  }
+}
+
 app.post('/api/favorite', (req, res) => {
   console.log('posting', req.body);
-  let favorite = new Favorites();
+  const favorite = new Favorites();
   favorite.nameMedia = req.body.name;
   favorite.idMedia = req.body.id;
   favorite.artMedia = req.body.art;
   favorite.userId = req.user._id;
-  favorite.save(() => {})
-  res.send('congrats?');
+  favorite.save((err, data) => {
+    res.send(data);
+    console.log(data);
+    // res.send(favoriteParse(data));
+  })
+
 });
 
 app.get('/api/favorites', (req, res) => {
   Favorites.find({userId: req.user._id})
     .exec(function(err, data) {
-    //  console.log(arguments);
       res.send(data);
     });
 });
-
-// app.get('/api/savedrecipes', function(req, res) {
-//   Recipe.find({})
-//     .exec(function(err, data) {
-//     //  console.log(arguments);
-//       res.send(data);
-//     });
-// });
-
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', (request, response) => {

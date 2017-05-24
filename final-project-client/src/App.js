@@ -23,7 +23,6 @@ const Home = () => (
   <div>
     <h2>Home</h2>
     <p>Let's do movies!</p>
-
   </div>
 )
 
@@ -77,8 +76,6 @@ class App extends Component {
     });
   }
   render() {
-    // console.log(this.state);
-    // console.log(PrivateRoute)
     return(
       <Router>
         <div>
