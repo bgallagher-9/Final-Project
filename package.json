@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node final-project-server/server.js",
-    "heroku-postbuild": "cd react-ui/ && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd final-project/ && npm install --only=dev && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",

@@ -27,20 +27,6 @@ app.post('/api/favorite', (req, res) => {
   res.send('congrats?');
 });
 
-// router.post('/api/book', (req, res) => {
-//
-//   const book = new Book();
-//   book.title = req.body.title;
-//   book.author = req.body.author;
-//   book.pubYear = req.body.pubYear;
-//   book.description = req.body.description;
-//   book.userId = req.user._id;
-//
-//   book.save((err, data) => {
-//     res.send(formatBook(data));
-//   });
-// });
-
 app.get('/api/favorites', (req, res) => {
   Favorites.find({userId: req.user._id})
     .exec(function(err, data) {
