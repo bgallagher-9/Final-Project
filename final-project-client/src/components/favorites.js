@@ -5,7 +5,7 @@ import './../scss/favorites.css';
 
 
 
-class Favorites extends Component {
+class FavoritesList extends Component {
 
   constructor() {
     super();
@@ -16,13 +16,12 @@ class Favorites extends Component {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().favorites)
     });
-
     if (this.state.favorites.length === 0) {
       $.ajax({
         url: '/api/favorites'
       })
       .done((data) => {
-        store.dispatch(Object.assign({}, actions.GET_FAVORITES, { favorites: data }, console.log(data)));
+        store.dispatch(Object.assign({}, actions.GET_FAVORITES, { favorites: data }));
       });
     }
   }
@@ -31,14 +30,12 @@ class Favorites extends Component {
     this.unsub()
   }
 
-
-
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     // console.log(this.props);
     const faves = this.state.favorites.map((x, i) => {
-      console.log('x', x)
-      return <li key={x.id + i} >
+      // console.log('x', x)
+      return <li key={x.idMedia + i} >
         {x.nameMedia}
       </li>
     })
@@ -72,4 +69,4 @@ class Favorites extends Component {
 //   }
 
 
-module.exports = Favorites;
+export default FavoritesList;

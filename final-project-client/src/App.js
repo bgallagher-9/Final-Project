@@ -9,7 +9,7 @@ import './scss/theater.css';
 import './scss/favorites.css';
 import './scss/main-search.css';
 //************************************
-import Favorites from './components/favorites.js';
+import FavoritesList from './components/favorites.js';
 import Theaters from './components/theaters.js';
 import Movies from './components/mainsearch.js';
 import SignUp from './components/signup.js';
@@ -42,7 +42,7 @@ class UserDisplay extends Component {
   render() {
     return(
       <div className="div-container">
-        <Favorites />
+        <FavoritesList />
         <Movies />
         <Theaters />
       </div>
@@ -63,19 +63,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     )
   )}/>
 )
-
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={props => (
-//     fakeAuth.isAuthenticated ? (
-//       <Component {...props}/>
-//     ) : (
-//       <Redirect to={{
-//         pathname: '/login',
-//         state: { from: props.location }
-//       }}/>
-//     )
-//   )}/>
-// )
 
 class App extends Component {
 

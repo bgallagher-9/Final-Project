@@ -26,15 +26,31 @@ class MainSearch extends Component {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().main);
     });
+    // if (this.props.match.params.id !== undefined) {
+    //   store.dispatch({ type: actions.START_BOOK_EDIT, bookId: this.props.match.params.id });
+    // }
     // console.log(this.state);
+    // console.log('this', this);
   }
 
   componentWillUnmount() {
     this.unsub();
   }
 
-  handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall());
+  handleQuery(input) {
+    store.dispatch(Object.assign({}, actions.QUERY_HANDLE));
+     this.makeAjaxCall();
+     console.log('query?')
   };
+  // handleQuery(input) { this.setState({ query: input }, () => this.makeAjaxCall());
+  // };
+
+  // handlePrevClick() {
+  //   store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
+  //   this.makeAjaxCall();
+  //   window.scrollTo(0, 0);
+  //     console.log('pnd', this.state.pageNumber)
+  // }
 
   // handleChange(evt) {
   //   store.dispatch(Object.assign({}, actions.INPUT_CHANGE, { value: evt.target.value }));
@@ -49,7 +65,7 @@ class MainSearch extends Component {
       url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
     })
     .done((data) => {
-        // console.log(data);
+        console.log('main ajax', data);
       let fixedData = data.results.map((x) => {
         if (x.media_type === 'movie') {
           if (x.poster_path === null) {
@@ -109,6 +125,9 @@ class MainSearch extends Component {
             }
           }
         }
+      else {
+        return null;
+      }
       })
       // console.log(data)
       store.dispatch(Object.assign({}, actions.GET_DATA, {
@@ -122,12 +141,6 @@ class MainSearch extends Component {
       // // console.log(pageCount)
     });
   }
-
-  // handlePageChange(pageNumber) {
-  //   // console.log(`active page is ${pageNumber}`);
-  //   // this.setState({activePage: pageNumber});
-  //   store.dispatch(Object.assign({}, actions.PAGINATION));
-  // }
 
 //   render() {
 //   return (
@@ -155,7 +168,9 @@ class MainSearch extends Component {
   }
 
   addToFavorites(x, evt){
-    evt.stopPropagation();
+    console.log('id?', this.props.main)
+    // console.log('id?', this.props.match.params.id)
+    // evt.stopPropagation();
     $.ajax({
       url: '/api/favorite',
       method: 'POST',
@@ -166,20 +181,11 @@ class MainSearch extends Component {
       }
     })
     .done((data) => {});
-    // store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES));
+    // store.dispatch(Object.assign({}, actions.xxx_xxxx_xxx));
   }
 
-  // $.ajax({
-  //       url: '/api/book',
-  //       method: 'POST',
-  //       data: submittedData
-  //     })
-  //     .done((data) => {
-  //       store.dispatch({ type: actions.SAVE_NEW_BOOK, book: data });
-  //     });
-
   render() {
-
+    // console.log('render data', this.)
     let searchResults = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.art !== 'no-image.png') {

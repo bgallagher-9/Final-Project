@@ -14,6 +14,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
+    case constants.QUERY_HANDLE:
+      return Object.assign({}, state, { input: action.input }, console.log('query action'))
     case constants.GET_DATA:
       return Object.assign({}, state, { results: action.results });
     case constants.RETURN_CLEAR:
@@ -24,6 +26,16 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, { pageNumber: state.pageNumber + 1 }, console.log('pnu', state.pageNumber) );
     case constants.DECREMENT_PAGE:
       return Object.assign({}, state, { pageNumber: state.pageNumber - 1 }, console.log('pnd', state.pageNumber));
+    case constants.LOGOUT:
+      return Object.assign({}, state, {
+        results: [],
+        queryInput: '',
+        pageNumber: 1,
+        query: '',
+        activePage: 1,
+        totalItemsCount: 0,
+        itemsCountPerPage: 0,
+      })
     // case constants.PAGINATION:
     //   return Object.assign({}, state, {
     //     activePage: state.activePage,

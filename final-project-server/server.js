@@ -20,14 +20,29 @@ app.post('/api/favorite', (req, res) => {
   console.log('posting', req.body);
   let favorite = new Favorites();
   favorite.nameMedia = req.body.name;
-  favorite.id = req.body.id;
-  favorite.art = req.body.art
+  favorite.idMedia = req.body.id;
+  favorite.artMedia = req.body.art;
+  favorite.userId = req.user._id;
   favorite.save(() => {})
   res.send('congrats?');
-})
+});
+
+// router.post('/api/book', (req, res) => {
+//
+//   const book = new Book();
+//   book.title = req.body.title;
+//   book.author = req.body.author;
+//   book.pubYear = req.body.pubYear;
+//   book.description = req.body.description;
+//   book.userId = req.user._id;
+//
+//   book.save((err, data) => {
+//     res.send(formatBook(data));
+//   });
+// });
 
 app.get('/api/favorites', (req, res) => {
-  Favorites.find({})
+  Favorites.find({userId: req.user._id})
     .exec(function(err, data) {
     //  console.log(arguments);
       res.send(data);

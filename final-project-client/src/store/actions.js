@@ -1,5 +1,6 @@
 import constants from './constants.js';
 
+const QUERY_HANDLE = { type: constants.QUERY_HANDLE }
 const GET_DATA = { type: constants.GET_DATA };
 const INPUT_CHANGE = { type: constants.INPUT_CHANGE };
 const DECREMENT_PAGE = { type: constants.DECREMENT_PAGE };
@@ -14,6 +15,7 @@ const LOGIN_SUCCESS = { type: constants.LOGIN_SUCCESS };
 const LOGIN_FAIL = { type: constants.LOGIN_FAIL };
 const LOGOUT = { type: constants.LOGOUT };
 const GET_FAVORITES = { type: constants.GET_FAVORITES};
+const ADD_TO_FAVORITES = { type: constants.ADD_TO_FAVORITES };
 
 const actions = {
   SIGNUP_CHANGE_UN: SIGNUP_CHANGE_UN,
@@ -29,7 +31,9 @@ const actions = {
   LOGIN_SUCCESS: LOGIN_SUCCESS,
   LOGIN_FAIL: LOGIN_FAIL,
   LOGOUT: LOGOUT,
-  GET_FAVORITES: GET_FAVORITES
+  QUERY_HANDLE: QUERY_HANDLE,
+  GET_FAVORITES: GET_FAVORITES,
+  ADD_TO_FAVORITES: ADD_TO_FAVORITES,
 }
 
-module.exports = actions;
+export default actions;

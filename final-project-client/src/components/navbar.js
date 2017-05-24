@@ -11,23 +11,10 @@ class NavBar extends Component {
       method: 'POST',
     })
     .done(() => {
-      console.log(this.props);
       store.dispatch(Object.assign({}, actions.LOGOUT));
       this.props.history.push('/login');
     })
   }
-
-  // handleLogout() {
-  //   $.ajax({
-  //     url: '/api/logout',
-  //     method: 'POST'
-  //   })
-  //   .done(() => {
-  //     store.dispatch({ type: actions.LOGOUT });
-  //     this.props.history.push('/login');
-  //   });
-  //
-  // }
 
   render() {
     // console.log(this.props);
