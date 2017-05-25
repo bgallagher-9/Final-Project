@@ -17,6 +17,7 @@ import Login from './components/login.js';
 import About from './components/about.js';
 import Things from './components/things.js';
 import NavBar from './components/navbar.js';
+import Details from './components/details.js';
 import { store } from './store/store.js';
 
 
@@ -89,9 +90,12 @@ class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/signup" render={(props) => <SignUp {...this.state} history={props.history} />} />
           <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
+
           <Route path="/about" component={About} />
           <Route path="/things" component={Things} />
-          <PrivateRoute path="/userdisplay/" component={UserDisplay} />
+          <PrivateRoute path="/userdisplay/"  component={UserDisplay} />
+          <PrivateRoute path="/details/" component={Details} />
+
         </div>
       </Router>
     );

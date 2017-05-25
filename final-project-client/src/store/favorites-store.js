@@ -25,16 +25,3 @@ const reducer = (state = favState, action) => {
 }
 
 export default reducer;
-
-// doRemove(index) {
-//     let copy = this.state.value.slice();
-//     copy.splice(index, 1);
-//     this.setState({
-//       value: copy
-//     });
-//   }
-// case actions.REMOVE_BOOK:
-//       const booksCopy = state.books.slice();
-//       const index = booksCopy.indexOf(action.book);
-//       booksCopy.splice(index, 1);
-//       return Object.assign({}, state, { books: booksCopy });

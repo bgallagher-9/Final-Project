@@ -5,6 +5,7 @@ const favoriteSchema = Schema({
   nameMedia: { type: String },
   idMedia: { type: Number },
   artMedia: { type: String },
+  typeMedia: { type: String },
   userId: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 

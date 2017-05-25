@@ -22,21 +22,23 @@ function favoriteParse(favorites) {
     id: favorites._id,
     nameMedia: favorites.nameMedia,
     idMedia: favorites.idMedia,
-    artMedia: favorites.artMedia
+    artMedia: favorites.artMedia,
+    typeMedia: favorites.typeMedia
   }
 }
 
 app.post('/api/favorite', (req, res) => {
-  // console.log('posting', req.body);
+  console.log('server:31 posting', req.body);
   const favorite = new Favorites();
   favorite.nameMedia = req.body.name;
   favorite.idMedia = req.body.id;
   favorite.artMedia = req.body.art;
   favorite.userId = req.user._id;
+  favorite.typeMedia = req.body.media_type;
   favorite.save((err, data) => {
     // res.send(data);
     // console.log(data);
-    res.send(favoriteParse(data));
+    res.send(data);
   })
   // console.log('post data', data)
 });
@@ -50,19 +52,6 @@ app.get('/api/favorites', (req, res) => {
     });
 });
 
-// app.delete('/api/favorites/:id', (req, res) => {
-//   const list = data[] || [];
-//   let faveDeletes;
-//   for (let i = 0; i < list.length; i++) {
-//     let { id } = list[i];
-//     if (id === req.params.id) {
-//       faveDeletes = i;
-//       break;
-//     }
-//   }
-//   list.splice(faveDeletes, 1);
-// });
-
 app.delete('/api/favorites/:id', (req, res) => {
   console.log('server delete req', req.params);
 
@@ -72,13 +61,6 @@ app.delete('/api/favorites/:id', (req, res) => {
   });
 
 });
-// router.delete('/api/book/:id', (req, res) => {
-//
-//   Book.findByIdAndRemove(req.params.id, (err, data) => {
-//     res.sendStatus(204);
-//   });
-//
-// });
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', (request, response) => {

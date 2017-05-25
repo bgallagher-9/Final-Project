@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { store, actions } from './../store/store.js';
 import './../scss/favorites.css';
+import { Link, withRouter } from 'react-router-dom';
+
+const imageURL = `https://image.tmdb.org/t/p/w500`;
 
 class FavoritesList extends Component {
 
@@ -39,17 +42,21 @@ class FavoritesList extends Component {
     .done(() => {
       // console.log(data)
       store.dispatch(Object.assign({}, actions.DELETE_FAVORITES, { favorites: x }));
-
     })
   };
 
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     const faves = this.state.favorites.map((x, i) => {
-      return <li key={x.idMedia + i} >
-        {x.nameMedia}
-        <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
-      </li>
+      let url = 'no-image.png';
+      if (x.artMedia !== 'no-image.png') {
+        url = `${imageURL}/${x.artMedia}`
+        }
+      return <li key={x.idMedia + i}>
+              <img src={url} alt={x.nameMedia} />
+              <Link to="/details/"><p>{x.nameMedia}</p></Link>
+              <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
+            </li>
     })
     return(
         <div>
@@ -64,4 +71,4 @@ class FavoritesList extends Component {
   }
 }
 
-export default FavoritesList;
+export default withRouter(FavoritesList);

@@ -4,21 +4,6 @@ import { store, actions } from './../store/store.js';
 
 class Login extends Component {
 
-  // constructor(){
-  //     super();
-  //     this.state = store.getState().auth;
-  //   }
-  //
-  // componentDidMount() {
-  //   this.unsub = store.subscribe(() => {
-  //     this.setState(store.getState().auth);
-  //   });
-  // }
-  //
-  // componentWillUnmount() {
-  //   this.unsub();
-  // }
-
   handleUNChange(evt) {
     store.dispatch( Object.assign({}, actions.LOGIN_CHANGE_UN, { value: evt.target.value }));
   }

@@ -3,6 +3,7 @@ import './../scss/main-search.css';
 import $ from 'jquery';
 import { store, actions } from './../store/store.js';
 import Query from './../components/query.js';
+import { Link, withRouter } from 'react-router-dom';
 // import Pagination from "react-js-pagination";
 // require("bootstrap/less/bootstrap.less");
 
@@ -44,6 +45,7 @@ class MainSearch extends Component {
       url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
     })
     .done((data) => {
+      console.log('main data', data)
       let fixedData = data.results.map((x) => {
         if (x.media_type === 'movie') {
           if (x.poster_path === null) {
@@ -53,6 +55,7 @@ class MainSearch extends Component {
               overview: x.overview,
               art: 'no-image.png',
               date: x.release_date,
+              media_type: x.media_type
             }
           }
           else {
@@ -62,6 +65,7 @@ class MainSearch extends Component {
               overview: x.overview,
               art: x.poster_path,
               date: x.release_date,
+              media_type: x.media_type
             }
           }
         }
@@ -72,7 +76,8 @@ class MainSearch extends Component {
               name: x.name,
               overview: x.overview,
               art: 'no-image.png',
-              date: x.first_air_date
+              date: x.first_air_date,
+              media_type: x.media_type
             }
           }
           else {
@@ -81,7 +86,8 @@ class MainSearch extends Component {
               name: x.name,
               overview: x.overview,
               art: x.poster_path,
-              date: x.first_air_date
+              date: x.first_air_date,
+              media_type: x.media_type
             }
           }
         }
@@ -110,7 +116,7 @@ class MainSearch extends Component {
       store.dispatch(Object.assign({}, actions.GET_DATA, {
         results: fixedData,
         totalItemsCount: data.total_results
-        }));
+      }, console.log(fixedData)));
       // totalResults = data.total_results;
       // pageCount = Math.ceil(totalResults / 20);
       // // console.log(pageCount)
@@ -150,17 +156,19 @@ class MainSearch extends Component {
       data: {
         name: x.name,
         id: x.id,
-        art: x.art
+        art: x.art,
+        media_type: x.media_type
       }
     })
     .done((data) => {
-      console.log('data from add to faves ajax1', data)
+      // console.log('data from add to faves ajax1', data)
       store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
       console.log('data from add to faves ajax2', data)
     });
   }
 
   render() {
+    // console.log(this.state)
     let searchResults = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.art !== 'no-image.png') {
@@ -173,7 +181,7 @@ class MainSearch extends Component {
                 <div className="favoritesItem"
                   onClick={(evt) => this.addToFavorites(x, evt)}></div>
                 <img src={url} alt={x.name} />
-                <p>Name: {x.name}</p>
+                  <Link to="/details/"><p>Name: {x.name}</p></Link>
               </li>
       }
       else {
@@ -183,7 +191,7 @@ class MainSearch extends Component {
                 <div className="favoritesItem"
                   onClick={(evt) => this.addToFavorites(x, evt)}></div>
                 <img src={url} alt={x.name} />
-                <p>Name: {x.name}</p>
+                <Link to="/details/"><p>Name: {x.name}</p></Link>
                 <p>Overview: {x.overview}</p>
                 <p>Date: {x.date}</p>
 
@@ -216,8 +224,9 @@ class MainSearch extends Component {
   }
 }
 
-module.exports = MainSearch;
+// module.exports = MainSearch;
 
+export default withRouter(MainSearch);
 
 
 
