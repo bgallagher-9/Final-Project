@@ -16,6 +16,7 @@ const LOGIN_FAIL = { type: constants.LOGIN_FAIL };
 const LOGOUT = { type: constants.LOGOUT };
 const GET_FAVORITES = { type: constants.GET_FAVORITES};
 const ADD_TO_FAVORITES = { type: constants.ADD_TO_FAVORITES };
+const DELETE_FAVORITES = { type: constants.DELETE_FAVORITES}
 
 const actions = {
   SIGNUP_CHANGE_UN: SIGNUP_CHANGE_UN,
@@ -34,6 +35,7 @@ const actions = {
   QUERY_HANDLE: QUERY_HANDLE,
   GET_FAVORITES: GET_FAVORITES,
   ADD_TO_FAVORITES: ADD_TO_FAVORITES,
+  DELETE_FAVORITES: DELETE_FAVORITES,
 }
 
 export default actions;

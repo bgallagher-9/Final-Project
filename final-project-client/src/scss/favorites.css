@@ -1,5 +1,5 @@
 .favorites-container {
-  height: 400px;
+  min-height: 400px;
   width: 20vw;
   /*border: 1px solid red;*/
   float: left;
@@ -7,4 +7,5 @@
   left: 0;
   top: 75px;*/
   /*display: inline-flex;*/
+  margin-bottom: 60px;
 }

@@ -19,6 +19,9 @@ import Things from './components/things.js';
 import NavBar from './components/navbar.js';
 import { store } from './store/store.js';
 
+
+// https://needanappname.herokuapp.com/
+
 const Home = () => (
   <div>
     <h2>Home</h2>

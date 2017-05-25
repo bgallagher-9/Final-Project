@@ -14,9 +14,27 @@ const reducer = (state = favState, action) => {
       const favorites = state.favorites.slice();
       favorites.push(action.favorites);
       return Object.assign({}, state, { favorites: favorites }, console.log('favorites from store', favorites));
+    case constants.DELETE_FAVORITES:
+          const copyFaves = state.favorites.slice();
+          const index = copyFaves.indexOf(action.favorites);
+          copyFaves.splice(index, 1);
+      return Object.assign({}, state, { favorites: copyFaves });
     default:
       return state;
   }
 }
 
 export default reducer;
+
+// doRemove(index) {
+//     let copy = this.state.value.slice();
+//     copy.splice(index, 1);
+//     this.setState({
+//       value: copy
+//     });
+//   }
+// case actions.REMOVE_BOOK:
+//       const booksCopy = state.books.slice();
+//       const index = booksCopy.indexOf(action.book);
+//       booksCopy.splice(index, 1);
+//       return Object.assign({}, state, { books: booksCopy });

@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 require('./authentify.js')(app);
 
 function favoriteParse(favorites) {
+  console.log(favorites);
   return {
     id: favorites._id,
     nameMedia: favorites.nameMedia,
@@ -26,26 +27,58 @@ function favoriteParse(favorites) {
 }
 
 app.post('/api/favorite', (req, res) => {
-  console.log('posting', req.body);
+  // console.log('posting', req.body);
   const favorite = new Favorites();
   favorite.nameMedia = req.body.name;
   favorite.idMedia = req.body.id;
   favorite.artMedia = req.body.art;
   favorite.userId = req.user._id;
   favorite.save((err, data) => {
-    res.send(data);
-    console.log(data);
-    // res.send(favoriteParse(data));
+    // res.send(data);
+    // console.log(data);
+    res.send(favoriteParse(data));
   })
-
+  // console.log('post data', data)
 });
 
 app.get('/api/favorites', (req, res) => {
+  // console.log('server get req', req)
   Favorites.find({userId: req.user._id})
     .exec(function(err, data) {
       res.send(data);
+      // console.log(data);
     });
 });
+
+// app.delete('/api/favorites/:id', (req, res) => {
+//   const list = data[] || [];
+//   let faveDeletes;
+//   for (let i = 0; i < list.length; i++) {
+//     let { id } = list[i];
+//     if (id === req.params.id) {
+//       faveDeletes = i;
+//       break;
+//     }
+//   }
+//   list.splice(faveDeletes, 1);
+// });
+
+app.delete('/api/favorites/:id', (req, res) => {
+  console.log('server delete req', req.params);
+
+  Favorites.findByIdAndRemove(req.params.id, (err, data) => {
+    res.sendStatus(204);
+    console.log('delete data',data);
+  });
+
+});
+// router.delete('/api/book/:id', (req, res) => {
+//
+//   Book.findByIdAndRemove(req.params.id, (err, data) => {
+//     res.sendStatus(204);
+//   });
+//
+// });
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', (request, response) => {
@@ -55,3 +88,16 @@ app.get('*', (request, response) => {
 app.listen(PORT, () => {
   console.log(`Howdy ho from port ${PORT}`);
 });
+
+
+// router.delete('/api/item/:id', (req, res) => {
+//   const list = data[req.query.bucketId] || [];
+//
+//   let indexOfItemToDelete;
+//   for (let i = 0; i < list.length; i++) {
+//     let { id } = list[i];
+//     if (id === req.params.id) {
+//       indexOfItemToDelete = i;
+//       break;
+//     }
+//   }

@@ -20,7 +20,7 @@ class FavoritesList extends Component {
       })
       .done((data) => {
         store.dispatch(Object.assign({}, actions.GET_FAVORITES, { favorites: data }));
-        console.log('data from faves.done', data)
+        // console.log('data from faves.done', data)
       });
     }
   }
@@ -29,11 +29,26 @@ class FavoritesList extends Component {
     this.unsub()
   }
 
+  removeFavorite(x, evt) {
+    evt.stopPropagation();
+    console.log('x', x);
+    $.ajax({
+      url: `api/favorites/${x._id}`,
+      method: 'DELETE'
+    })
+    .done(() => {
+      // console.log(data)
+      store.dispatch(Object.assign({}, actions.DELETE_FAVORITES, { favorites: x }));
+
+    })
+  };
+
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const faves = this.state.favorites.map((x, i) => {
       return <li key={x.idMedia + i} >
         {x.nameMedia}
+        <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
       </li>
     })
     return(
@@ -48,23 +63,5 @@ class FavoritesList extends Component {
     );
   }
 }
-
-
-// render() {
-//     console.log(this.state)
-//     const recipesSaved = this.state.recipeSaves.map((recipe, i) => {
-//       return <li key={recipe.name + i} >
-//         {recipe.name}<br/>
-//       {recipe.url}
-//       </li>
-//     });
-//
-//     return (
-//       <div>
-//         {recipesSaved}
-//       </div>
-//     );
-//   }
-
 
 export default FavoritesList;

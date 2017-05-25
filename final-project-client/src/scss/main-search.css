@@ -1,5 +1,5 @@
 .main-search-container {
-  height: 400px;
+  min-height: 400px;
   width: 50vw;
   /*border: 1px solid black;*/
   margin-left: 5vw;
