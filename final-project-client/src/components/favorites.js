@@ -45,6 +45,10 @@ class FavoritesList extends Component {
     })
   };
 
+  onToDetails(data) {
+    store.dispatch(Object.assign({}, actions.ON_TO_DETAILS, { details: data }))
+  }
+
   render() {
     console.log(this.state);
     const faves = this.state.favorites.map((x, i) => {
@@ -54,7 +58,7 @@ class FavoritesList extends Component {
         }
       return <li key={x.idMedia + i}>
               <img src={url} alt={x.nameMedia} />
-              <Link to="/details/"><p>{x.nameMedia}</p></Link>
+              <p><Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
               <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
             </li>
     })
