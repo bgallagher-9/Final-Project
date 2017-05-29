@@ -45,7 +45,7 @@ class MainSearch extends Component {
       url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
     })
     .done((data) => {
-      // console.log('main data', data)
+      console.log('main data', data)
       let fixedData = data.results.map((x) => {
         if (x.media_type === 'movie') {
           if (x.poster_path === null) {
@@ -149,21 +149,21 @@ class MainSearch extends Component {
   }
 
   addToFavorites(x, evt) {
-    console.log(x.name, 'added to favorites')
+    console.log(x, 'x')
     $.ajax({
       url: '/api/favorite',
       method: 'POST',
       data: {
-        nameMedia: x.name,
-        idMedia: x.id,
-        artMedia: x.art,
-        typeMedia: x.media_type
+        nameMedia: x.nameMedia,
+        idMedia: x.idMedia,
+        artMedia: x.artMedia,
+        typeMedia: x.typeMedia
       }
     })
     .done((data) => {
-      // console.log('data from add to faves ajax1', data)
+      console.log('data from add to faves ajax1', data)
       store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
-      console.log('data from add to faves ajax2', data)
+      // console.log('data from add to faves ajax2', data)
     });
   }
 
@@ -172,7 +172,7 @@ class MainSearch extends Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     let searchResults = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.artMedia !== 'no-image.png') {
@@ -222,13 +222,10 @@ class MainSearch extends Component {
                  onClick={() => this.handleNextClick()}
                  >next</div>
           </div>
-
         </div>
     )
   }
 }
-
-// module.exports = MainSearch;
 
 export default withRouter(MainSearch);
 

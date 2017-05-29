@@ -1,73 +1,89 @@
-import React, { Component } from 'react';
-import { store, actions } from './../store/store.js';
+import React, {Component} from 'react';
+import {store, actions} from './../store/store.js';
 import $ from 'jquery';
+import {Link, withRouter} from 'react-router-dom';
 
 const apiKey = '873eb20764b577e3b6adfa6f878f3379';
-
-// const baseURL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=`;
 const deetsURL1 = `https://api.themoviedb.org/3/`
-
-// /
-// ${currentState.person_id}
 const deetsURL2 = `?api_key=${apiKey}&language=en-US`;
-// https://api.themoviedb.org/3/movie/{movie_id}?api_key=873eb20764b577e3b6adfa6f878f3379&language=en-US
-
-// https://api.themoviedb.org/3/tv/{tv_id}?api_key=873eb20764b577e3b6adfa6f878f3379&language=en-US
-
-// https://api.themoviedb.org/3/person/{person_id}?api_key=873eb20764b577e3b6adfa6f878f3379&language=en-US
-
-// https://api.themoviedb.org/3/{media_type}/{person_id}?api_key=873eb20764b577e3b6adfa6f878f3379&language=en-US
+const imageURL = `https://image.tmdb.org/t/p/w500`;
 
 class Details extends Component {
 
   constructor() {
     super();
-    this.state = store.getState().details
-    // console.log('constructor', store.getState());
-    // console.log(this.state);
+    this.state = store.getState().details;
+    // console.log(this.state.details);
+    this.deetsAjaxCall()
   }
 
   componentDidMount() {
-    // console.log(this.state);
-    const currentState = store.getState().details;
-    console.log(currentState.details)
-    // console.log(currentState.details[0])
-    // console.log('state', this.state);
-      const url = `${deetsURL1}${currentState.details.typeMedia}/${currentState.details.idMedia}${deetsURL2}`;
-      console.log(url);
+    console.log('1. mounting1', this.state);
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().details);
-      this.deetsAjaxCall();
-      console.log(this.state);
-
+      console.log('2. mounting2', this.state);
     })
+    // , this.deetsAjaxCall());
+    console.log('3. mounting3', this.state);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.unsub()
     store.dispatch(Object.assign({}, actions.DEETS_RESET));
   }
 
   deetsAjaxCall() {
+    console.log('4. calling1 state', this.state)
     const currentState = store.getState().details;
-      const url = `${deetsURL1}/${currentState.typeMedia}/${currentState.media_type}/${currentState.idMedia}${deetsURL2}`;
-      console.log('url', url);
-    $.ajax({
-      url: url
-    })
+    const url = `${deetsURL1}${currentState.details.typeMedia}/${currentState.details.idMedia}${deetsURL2}`;
+    console.log('url', url);
+    $.ajax({url: url})
     .done((data) => {
-      console.log('data', data);
-    })
+      console.log('5. calling2 data', data);
+      // console.log('done state', this.state)
+      store.dispatch(Object.assign({}, actions.GET_DETAILS, {
+        results: data,
+        typeMedia: this.state.details.typeMedia
+        // }, console.log(data)
+      }))
+    } )
   }
-
   render() {
-    // console.log(this.state);
-    return(
+    console.log('rendering state1', this.state)
+    // let url = 'no-image.png';
+    // if (this.state.details.artMedia !== 'no-image.png') {
+    //   url = `${imageURL}/${this.state.details.artMedia}`}
+    let moreDetails;
+    //
+    // if (this.state.typeMedia !== 'person') {
+    //   moreDetails = this.state.results.map((x) => {
+    //     return <li className="searchLis" key={x.idMedia}>
+    //       <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+    //       <img src={url} alt={x.nameMedia}/>
+    //       <p>Name:
+    //         <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link>
+    //       </p>
+    //       <p>Overview: {x.overview}</p>
+    //       <p>Date: {x.dateMedia}</p>
+    //     </li>
+    //   })
+    // }
+    // else {
+    //   moreDetails = this.state.results.map((x) => {
+    //     return <li className="searchLis" key={x.idMedia}>
+    //       <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+    //       <img src={url} alt={x.nameMedia}/>
+    //       <p>Name:
+    //         <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link>
+    //       </p>
+    //     </li>
+    //   })
+    // }
+    return (
       <div>
-      you made it!
+        {moreDetails}
       </div>
-    );
+    )
   }
 }
-
-export default Details;
+export default withRouter(Details);

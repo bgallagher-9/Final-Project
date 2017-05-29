@@ -24,7 +24,8 @@ class SignUp extends Component {
     })
     .done((data) => {
       store.dispatch(Object.assign({}, actions.SIGNUP_SUCCESS));
-      setTimeout(() => {this.props.history.push('/') }, 2500);
+      this.props.history.push('/');
+      // setTimeout(() => {this.props.history.push('/') }, 2500);
 
     })
     .fail((xhr, error, responseText) => {

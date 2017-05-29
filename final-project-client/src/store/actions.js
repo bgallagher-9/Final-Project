@@ -19,6 +19,7 @@ const ADD_TO_FAVORITES = { type: constants.ADD_TO_FAVORITES };
 const DELETE_FAVORITES = { type: constants.DELETE_FAVORITES };
 const ON_TO_DETAILS = { type: constants.ON_TO_DETAILS };
 const DEETS_RESET = { type: constants.DEETS_RESET };
+const GET_DETAILS = { type: constants.GET_DETAILS };
 
 const actions = {
   SIGNUP_CHANGE_UN: SIGNUP_CHANGE_UN,
@@ -40,6 +41,7 @@ const actions = {
   DELETE_FAVORITES: DELETE_FAVORITES,
   ON_TO_DETAILS: ON_TO_DETAILS,
   DEETS_RESET: DEETS_RESET,
+  GET_DETAILS: GET_DETAILS,
 }
 
 export default actions;

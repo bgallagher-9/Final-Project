@@ -17,6 +17,7 @@ class FavoritesList extends Component {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().favorites)
     });
+    // console.log(this.state);
     if (this.state.favorites.length === 0) {
       $.ajax({
         url: '/api/favorites'
@@ -50,13 +51,13 @@ class FavoritesList extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const faves = this.state.favorites.map((x, i) => {
       let url = 'no-image.png';
       if (x.artMedia !== 'no-image.png') {
         url = `${imageURL}/${x.artMedia}`
         }
-      return <li key={x.idMedia + i}>
+      return <li key={x.idMedia}>
               <img src={url} alt={x.nameMedia} />
               <p><Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
               <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>

@@ -30,11 +30,11 @@ function favoriteParse(favorites) {
 app.post('/api/favorite', (req, res) => {
   console.log('server:31 posting', req.body);
   const favorite = new Favorites();
-  favorite.nameMedia = req.body.name;
-  favorite.idMedia = req.body.id;
-  favorite.artMedia = req.body.art;
+  favorite.nameMedia = req.body.nameMedia;
+  favorite.idMedia = req.body.idMedia;
+  favorite.artMedia = req.body.artMedia;
   favorite.userId = req.user._id;
-  favorite.typeMedia = req.body.media_type;
+  favorite.typeMedia = req.body.typeMedia;
   favorite.save((err, data) => {
     // res.send(data);
     // console.log(data);
