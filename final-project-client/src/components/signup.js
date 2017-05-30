@@ -47,21 +47,22 @@ class SignUp extends Component {
       <div className="signup">
         <div className="">
         <h1>Signup and join the greatness!</h1>
-        <div className="input-container">
+        <div className="container-md input-container">
           <input type='text'
-                 className="userName"
+                 className="form-control"
+                 id="form2"
                  onChange={(evt) => this.handleUNChange(evt)}
                  value={this.props.unValue}
+                 placeholder="Username"
                  ></input>
           <input type='password'
-                 className="password"
+                 className="password form-control"
+                 id="form2"
                  onChange={(evt) => this.handlePWChange(evt)}
                  value={this.props.pwValue}
+                 placeholder="Password"
                  ></input>
-               <button
-                 onClick={() => this.handleSignUpClick()}>
-               Sign Up
-              </button>
+               <button type="button" className="btn btn-elegant" onClick={() => this.handleSignUpClick()}>Sign Up</button>
              {message}
         </div>
         </div>

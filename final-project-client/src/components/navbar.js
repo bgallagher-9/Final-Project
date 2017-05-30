@@ -24,40 +24,38 @@ class NavBar extends Component {
         <div className="name">
           Welcome back, {this.props.welcomeName}
         </div>
-          <ul className="">
-            <Link className="" to="/about"><li className="">about</li></Link>
-            <Link className="" to="/things"><li className="">things</li></Link>
-            <Link className="" to="/userdisplay">SEARCH</Link>
-            <li className="" onClick={() => this.handleLogout()}>Logout</li>
+        <div className="collapse navbar-collapse justify-content-end" id="naving" >
+          <ul className="navbar-nav float-right">
+            <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
+            <Link className="nav-link" to="/things"><li className="nav-item">Things</li></Link>
+            <Link className="nav-link" to="/userdisplay">Search</Link>
+            <li className="nav-link" onClick={() => this.handleLogout()}>Logout</li>
           </ul>
+        </div>
       </div>
 
     }
     else {
       loggedOn =
-        <div className="" >
-          <ul className="">
-            <Link className="" to="/about"><li className="">about</li></Link>
-            <Link className="" to="/things"><li className="">things</li></Link>
-            <Link className="" to="/login"><li className="">Login</li></Link>
-            <Link className="" to="/signup"><li className="">Signup</li></Link>
+        <div className="collapse navbar-collapse justify-content-end" id="naving" >
+          <ul className="navbar-nav float-right">
+            <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
+            <Link className="nav-link" to="/things"><li className="nav-item">Things</li></Link>
+            <Link className="nav-link" to="/login"><li className="nav-item">Login</li></Link>
+            <Link className="nav-link" to="/signup"><li className="nav-item">Signup</li></Link>
           </ul>
         </div>
     }
     return(
     <div>
       <header>
-          <nav className="">
-            <div className="">
+          <nav className="navbar navbar-toggleable-sm navbar-dark bg-primary">
+            <div className="container">
               <div className="">
-                <button className="" type="button" >
-
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
+                <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#naving" aria-controls="naving" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
                 </button>
-
-                  <Link className="" to="/">Home (logo)</Link>
+                  <Link className="navbar-brand" to="/">Home (logo)</Link>
                 </div>
               {loggedOn}
             </div>

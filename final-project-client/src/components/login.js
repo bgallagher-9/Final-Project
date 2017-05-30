@@ -46,23 +46,22 @@ class Login extends Component {
       <div className="login">
         <div className="tint">
         <h1>Login to unleash the power!</h1>
-        <div className="input-container">
-          <input
-            type='text'
-            className="userName"
-            onChange={(evt) => this.handleUNChange(evt)}
-            value={this.props.unValue}
-             ></input>
-          <input
-            type='password'
-            className="password"
-            onChange={(evt) => this.handlePWChange(evt)}
-            value={this.props.pwValue}
-            ></input>
-          <button
-           onClick={() => this.handleSignUpClick()}>
-           Login
-          </button>
+          <div className="container input-container">
+            <input type='text'
+                   className="form-control"
+                   id="form2"
+                   onChange={(evt) => this.handleUNChange(evt)}
+                   value={this.props.unValue}
+                   placeholder="Username"
+                   ></input>
+            <input type='password'
+                   className="password form-control"
+                   id="form2"
+                   onChange={(evt) => this.handlePWChange(evt)}
+                   value={this.props.pwValue}
+                   placeholder="Password"
+                   ></input>
+                 <button type="button" className="btn btn-elegant" onClick={() => this.handleSignUpClick()}>Login</button>
              {message}
         </div>
         </div>

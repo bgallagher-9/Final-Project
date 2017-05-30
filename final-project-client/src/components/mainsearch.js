@@ -184,27 +184,28 @@ class MainSearch extends Component {
         url = `${imageURL}/${x.artMedia}`
       }
       if (x.typeMedia === 'person') {
-        return <li
-                className="searchLis"
-                key={x.idMedia}>
-                <div className="favoritesItem"
-                  onClick={(evt) => this.addToFavorites(x, evt)}></div>
-                <img src={url} alt={x.nameMedia} />
+        return <div className="card"  key={x.idMedia}>
+                <div className="card-block">
+                  <li className="searchLis">
+                  <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+                  <img src={url} alt={x.nameMedia} />
                   <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
-              </li>
+                  </li>
+                </div>
+              </div>
       }
       else {
-        return <li
-                className="searchLis"
-                key={x.idMedia}>
-                <div className="favoritesItem"
-                  onClick={(evt) => this.addToFavorites(x, evt)}></div>
-                <img src={url} alt={x.nameMedia} />
-                <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
-                <p>Overview: {x.overview}</p>
-                <p>Date: {x.dateMedia}</p>
-
-              </li>
+        return <div className="card" key={x.idMedia}>
+                <div className="card-block">
+                <li className="searchLis" >
+                  <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+                  <img src={url} alt={x.nameMedia} />
+                  <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
+                  <p>Overview: {x.overview}</p>
+                  <p>Date: {x.dateMedia}</p>
+                </li>
+                </div>
+              </div>
       }
     })
     searchResults = <ol className="searchOL">
@@ -222,12 +223,8 @@ class MainSearch extends Component {
           </div>
             {searchResults}
           <div className="button-container">
-            <div className="page-button prev-button"
-                 onClick={() => this.handlePrevClick()}
-                 >previous</div>
-            <div className="page-button next-button"
-                 onClick={() => this.handleNextClick()}
-                 >next</div>
+            <button type="button" className="btn btn-elegant" onClick={() => this.handlePrevClick()}>Previous</button>
+            <button type="button" className="btn btn-elegant" onClick={() => this.handleNextClick()}>Next</button>
           </div>
         </div>
     )

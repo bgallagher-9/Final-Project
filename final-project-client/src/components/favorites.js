@@ -58,11 +58,15 @@ class FavoritesList extends Component {
         if (x.artMedia !== 'no-image.png') {
           url = `${imageURL}/${x.artMedia}`
           }
-        return <li key={x.idMedia + i}>
-                <img src={url} alt={x.nameMedia} />
-                <p><Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
-                <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
-              </li>
+        return <div className="card" key={x.idMedia + i}>
+                <div className="card-block">
+                  <li >
+                    <img src={url} alt={x.nameMedia} />
+                    <p><Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
+                    <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
+                  </li>
+                </div>
+              </div>
       });
       faveList = <ol>
         {faves}
@@ -71,8 +75,10 @@ class FavoritesList extends Component {
     return (
         <div>
           Favorites List
-          <div className="favorites-container">
-            {faveList}
+          <div className="">
+            <div className="favorites-container">
+              {faveList}
+            </div>
           </div>
         </div>
     );
