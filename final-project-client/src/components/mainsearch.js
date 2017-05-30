@@ -172,7 +172,13 @@ class MainSearch extends Component {
   }
 
   render() {
-    let searchResults = this.state.results.map((x) => {
+    // console.log(this.state.main)
+    let searchResults;
+    if (this.state.results.length === 0) {
+      searchResults = <p>I am ready to search.</p>
+    }
+    else {
+      const resultsSearch = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.artMedia !== 'no-image.png') {
         url = `${imageURL}/${x.artMedia}`
@@ -200,7 +206,7 @@ class MainSearch extends Component {
 
               </li>
       }
-    });
+    })};
     return(
         <div className="main-search-container">
           <div className="input-box">

@@ -17,38 +17,55 @@ class NavBar extends Component {
   }
 
   render() {
-    // console.log(this.props);
     let loggedOn;
     if (this.props.isLoggedOn) {
-      loggedOn =<div>
+      loggedOn =
+      <div className="collapse navbar-toggleable-xs" id="naving">
         <div className="name">
           Welcome back, {this.props.welcomeName}
         </div>
-          <ul>
-            <Link to="/about"><li>about</li></Link>
-            <Link to="/things"><li>things</li></Link>
-            <Link to="/userdisplay">SEARCH</Link>
-            <button onClick={() => this.handleLogout()}>Logout</button>
+          <ul className="nav navbar-nav navbar-right">
+            <Link className="nav-link" to="/about"><li className="nav-item">about</li></Link>
+            <Link className="nav-link" to="/things"><li className="nav-item">things</li></Link>
+            <Link className="nav-link" to="/userdisplay">SEARCH</Link>
+            <li className="nav-item" onClick={() => this.handleLogout()}>Logout</li>
           </ul>
       </div>
 
     }
     else {
       loggedOn =
-      <ul>
-        <Link to="/about"><li>about</li></Link>
-        <Link to="/things"><li>things</li></Link>
-        <Link to="/login"><li>Login</li></Link>
-        <Link to="/signup"><li>Signup</li></Link>
-      </ul>
+        <div className="collapse navbar-collapse navbar-right" id="naving">
+          <ul className="nav navbar-nav navbar-right">
+            <Link className="nav-link" to="/about"><li className="nav-item">about</li></Link>
+            <Link className="nav-link" to="/things"><li className="nav-item">things</li></Link>
+            <Link className="nav-link" to="/login"><li className="nav-item active">Login</li></Link>
+            <Link className="nav-link" to="/signup"><li className="nav-item">Signup</li></Link>
+          </ul>
+        </div>
     }
     return(
-        <div>
-          <nav>
-            <Link className="home-link" to="/">Home (logo)</Link>
+    <div>
+      <header>
+          <nav className="navbar navbar-inverse navbar-toggleable-xs elegant-color bg-inverse">
+            <div className="container-fluid">
+              <div className="navbar-header">
+                <button className="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#naving" aria-expanded="false" >
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+
+                  <Link className="navbar-brand" to="/">Home (logo)</Link>
+                </div>
               {loggedOn}
+            </div>
           </nav>
-        </div>
+      </header>
+    </div>
+
+
     )
   }
 }

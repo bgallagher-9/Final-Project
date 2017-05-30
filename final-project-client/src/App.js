@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 //get scss going**********************
-import './App.css';
+import './scss/App.css';
 import './scss/nav.css';
 import './scss/footer.css';
 import './scss/theater.css';
