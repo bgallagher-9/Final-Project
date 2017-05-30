@@ -4,6 +4,29 @@
   border: 1px solid black;
 }*/
 
+.home {
+  background-image: url('/hometv.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+}
+
+.login {
+  background-image: url('/red-carpet.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  /*color: white;*/
+}
+
+.login h1 {
+  color: white;
+}
+
 .name {
   color: white;
   /*border: 2px red solid;*/

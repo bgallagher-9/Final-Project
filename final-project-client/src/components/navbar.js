@@ -20,7 +20,7 @@ class NavBar extends Component {
     let loggedOn;
     if (this.props.isLoggedOn) {
       loggedOn =
-      <div className="collapse navbar-toggleable-xs" id="naving">
+      <div className="collapse navbar-collapse navbar-right" id="naving">
         <div className="name">
           Welcome back, {this.props.welcomeName}
         </div>

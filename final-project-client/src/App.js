@@ -25,7 +25,7 @@ import { store } from './store/store.js';
 // https://needanappname.herokuapp.com/
 
 const Home = () => (
-  <div>
+  <div className="home">
       <h2>Home</h2>
       <p>Let's do movies!</p>
   </div>

@@ -43,7 +43,7 @@ class Login extends Component {
       </div>
     }
     return (
-      <div>
+      <div className="login">
         <h1>Login to unleash the power!</h1>
         <div className="input-container">
           <input

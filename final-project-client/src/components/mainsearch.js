@@ -175,7 +175,7 @@ class MainSearch extends Component {
     // console.log(this.state.main)
     let searchResults;
     if (this.state.results.length === 0) {
-      searchResults = <p>I am ready to search.</p>
+      searchResults = <p className="zero-search">My search is ready.</p>
     }
     else {
       const resultsSearch = this.state.results.map((x) => {
@@ -206,7 +206,11 @@ class MainSearch extends Component {
 
               </li>
       }
-    })};
+    })
+    searchResults = <ol className="searchOL">
+        {resultsSearch}
+      </ol>
+  };
     return(
         <div className="main-search-container">
           <div className="input-box">
@@ -216,9 +220,7 @@ class MainSearch extends Component {
               query={this.state.query}
                />
           </div>
-          <ol className="searchOL">
             {searchResults}
-          </ol>
           <div className="button-container">
             <div className="page-button prev-button"
                  onClick={() => this.handlePrevClick()}
