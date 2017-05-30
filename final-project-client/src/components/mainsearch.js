@@ -26,12 +26,12 @@ class MainSearch extends Component {
   componentDidMount() {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().main);
-      // console.log('1main')
     });
   }
 
   componentWillUnmount() {
     this.unsub();
+    console.log('unmounting?');
   }
 
   handleQuery(input) {
@@ -40,15 +40,12 @@ class MainSearch extends Component {
   };
 
   makeAjaxCall() {
-    // console.log('2main top ajax')
     // console.log('pg#', this.state.pageNumber)
     const currentState = store.getState().main
     $.ajax({
       url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
     })
     .done((data) => {
-      console.log('3main top done')
-      console.log('main data', data)
       let fixedData = data.results.map((x) => {
         if (x.media_type === 'movie') {
           if (x.poster_path === null) {
@@ -124,7 +121,6 @@ class MainSearch extends Component {
       // pageCount = Math.ceil(totalResults / 20);
       // // console.log(pageCount)
     });
-    // console.log('4main bottom done')
   }
 
 //   render() {
@@ -154,6 +150,7 @@ class MainSearch extends Component {
 
   addToFavorites(x, evt) {
     console.log(x, 'x')
+
     $.ajax({
       url: '/api/favorite',
       method: 'POST',
@@ -165,9 +162,7 @@ class MainSearch extends Component {
       }
     })
     .done((data) => {
-      // console.log('data from add to faves ajax1', data)
       store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
-      // console.log('data from add to faves ajax2', data)
     });
   }
 
@@ -177,8 +172,6 @@ class MainSearch extends Component {
   }
 
   render() {
-    // console.log('5rendering')
-    // console.log(this.state)
     let searchResults = this.state.results.map((x) => {
       let url = 'no-image.png'
       if (x.artMedia !== 'no-image.png') {

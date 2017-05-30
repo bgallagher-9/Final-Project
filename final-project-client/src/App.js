@@ -10,7 +10,6 @@ import './scss/favorites.css';
 import './scss/main-search.css';
 //************************************
 import FavoritesList from './components/favorites.js';
-import Theaters from './components/theaters.js';
 import Movies from './components/mainsearch.js';
 import SignUp from './components/signup.js';
 import Login from './components/login.js';
@@ -19,14 +18,16 @@ import Things from './components/things.js';
 import NavBar from './components/navbar.js';
 import Details from './components/details.js';
 import { store } from './store/store.js';
+// import Modal from './modal.js';
+
 
 
 // https://needanappname.herokuapp.com/
 
 const Home = () => (
   <div>
-    <h2>Home</h2>
-    <p>Let's do movies!</p>
+      <h2>Home</h2>
+      <p>Let's do movies!</p>
   </div>
 )
 
@@ -47,7 +48,6 @@ class UserDisplay extends Component {
       <div className="div-container">
         <FavoritesList />
         <Movies />
-        <Theaters />
       </div>
     )
   }
@@ -60,7 +60,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       <Component {...props}/>
     ) : (
       <Redirect to={{
-        pathname: '/login',
+        pathname: '/home',
         state: { from: props.location }
       }}/>
     )
@@ -79,6 +79,11 @@ class App extends Component {
       this.setState(store.getState().auth);
     });
   }
+
+  componentWillUnmount(){
+    this.unsub()
+  }
+
   render() {
     return(
       <Router>

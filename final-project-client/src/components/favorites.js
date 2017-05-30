@@ -17,31 +17,28 @@ class FavoritesList extends Component {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().favorites)
     });
-    // console.log(this.state);
-    if (this.state.favorites.length === 0) {
+    // if (this.state.favorites.length === 0) {
       $.ajax({
         url: '/api/favorites'
       })
       .done((data) => {
         store.dispatch(Object.assign({}, actions.GET_FAVORITES, { favorites: data }));
-        // console.log('data from faves.done', data)
       });
-    }
+    // }
   }
 
   componentWillUnmount(){
-    this.unsub()
+    this.unsub();
+    console.log('unmounting?');
   }
 
   removeFavorite(x, evt) {
-    evt.stopPropagation();
     console.log('x', x);
     $.ajax({
       url: `api/favorites/${x._id}`,
       method: 'DELETE'
     })
     .done(() => {
-      // console.log(data)
       store.dispatch(Object.assign({}, actions.DELETE_FAVORITES, { favorites: x }));
     })
   };
@@ -51,25 +48,31 @@ class FavoritesList extends Component {
   }
 
   render() {
-    // console.log(this.state);
-    const faves = this.state.favorites.map((x, i) => {
-      let url = 'no-image.png';
-      if (x.artMedia !== 'no-image.png') {
-        url = `${imageURL}/${x.artMedia}`
-        }
-      return <li key={x.idMedia}>
-              <img src={url} alt={x.nameMedia} />
-              <p><Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
-              <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
-            </li>
-    })
-    return(
+    let faveList;
+    if (this.state.favorites.length === 0) {
+      faveList = <p>You don't have any favorites yet.</p>
+    }
+    else {
+      const faves = this.state.favorites.map((x, i) => {
+        let url = 'no-image.png';
+        if (x.artMedia !== 'no-image.png') {
+          url = `${imageURL}/${x.artMedia}`
+          }
+        return <li key={x.idMedia + i}>
+                <img src={url} alt={x.nameMedia} />
+                <p><Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
+                <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
+              </li>
+      });
+      faveList = <ol>
+        {faves}
+      </ol>
+    }
+    return (
         <div>
-          Your Favorites!
+          Favorites List
           <div className="favorites-container">
-            <ol>
-              {faves}
-            </ol>
+            {faveList}
           </div>
         </div>
     );

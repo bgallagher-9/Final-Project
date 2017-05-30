@@ -19,31 +19,25 @@ class Details extends Component {
   }
 
   deetsAjaxCall() {
-    // console.log('4. calling1 state', this.state)
     const currentState = store.getState().details;
-    console.log(currentState)
     const url = `${deetsURL1}${currentState.details.typeMedia}/${currentState.details.idMedia}${deetsURL2}`;
-    // console.log('url', url);
     $.ajax({url: url})
     .done((data) => {
-      console.log('5. calling2 data', data);
       store.dispatch(Object.assign({}, actions.GET_DETAILS, { results: data }))
-    }, console.log(this.state) )
+    })
   }
 
   componentDidMount() {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().details);
-    }, console.log(this.state))
+    })
   }
 
   componentWillUnmount() {
     this.unsub()
-    // store.dispatch(Object.assign({}, actions.DEETS_RESET));
   }
 
   addToFavorites(evt) {
-    // console.log(x, 'x')
     $.ajax({
       url: '/api/favorite',
       method: 'POST',
@@ -55,9 +49,7 @@ class Details extends Component {
       }
     })
     .done((data) => {
-      // console.log('data from add to faves ajax1', data)
       store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
-      // console.log('data from add to faves ajax2', data)
     });
   }
 
@@ -68,13 +60,22 @@ class Details extends Component {
       url = `${imageURL}/${this.state.details.artMedia}`}
     let results = this.state.results;
     let breakdown;
-
+    let styling = {
+      width: "100%",
+      height: "100%",
+      // backgroundColor: 'purple'
+      backgroundImage: 'url('+`${imageURL}${results.backdrop_path}`+')',
+      backgroundSize: 'cover',
+      overflow: 'hidden',
+      repeat: 'noRepeat'
+    }
+    console.log(styling.backgroundImage)
     if (this.state.details.typeMedia === 'person') {
       breakdown =
-      <div>
+      <div className="details-window">
         <div className="favoritesItem"
           onClick={(evt) => this.addToFavorites(evt)}></div>
-          <img src={url} alt={results.title}/>
+          <img className="poster-image" src={url} alt={results.title}/>
           <p>Name: {results.name}</p>
           <p>Birthday: {results.birthday}</p>
           <p>Died: {results.deathday}</p>
@@ -84,10 +85,10 @@ class Details extends Component {
     }
     else if (this.state.details.typeMedia === 'movie') {
       breakdown =
-      <div>
+      <div className="details-window" style={ styling }>
         <div className="favoritesItem"
           onClick={(evt) => this.addToFavorites(evt)}></div>
-        <img src={url} alt={results.title}/>
+        <img className="poster-image" src={url} alt={results.title}/>
         <p>Title: {results.title}</p>
         <p>Runtime: {results.runtime} minutes.</p>
         <p>Overview: {results.overview}</p>
@@ -98,10 +99,10 @@ class Details extends Component {
     }
     else {
       breakdown =
-      <div>
+      <div className="details-window" style={ styling }>
         <div className="favoritesItem"
           onClick={(evt) => this.addToFavorites(evt)}></div>
-        <img src={url} alt={results.title}/>
+        <img className="poster-image"src={url} alt={results.title}/>
         <p>Title: {results.name}</p>
         <p>Overview: {results.overview}</p>
         <p>First Air Date: {results.first_air_date}</p>
@@ -114,8 +115,8 @@ class Details extends Component {
 
     return (
       <div>
-        return to results
-        {breakdown}
+          return to results
+          {breakdown}
       </div>
     )
   }
