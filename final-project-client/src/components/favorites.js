@@ -35,7 +35,7 @@ class FavoritesList extends Component {
   removeFavorite(x, evt) {
     console.log('x', x);
     $.ajax({
-      url: `api/favorites/${x._id}`,
+      url: `/api/favorites/${x._id}`,
       method: 'DELETE'
     })
     .done(() => {

@@ -45,6 +45,7 @@ class SignUp extends Component {
         }
     return (
       <div className="signup">
+        <div className="">
         <h1>Signup and join the greatness!</h1>
         <div className="input-container">
           <input type='text'
@@ -62,6 +63,7 @@ class SignUp extends Component {
                Sign Up
               </button>
              {message}
+        </div>
         </div>
       </div>
     );

@@ -44,6 +44,7 @@ class Login extends Component {
     }
     return (
       <div className="login">
+        <div className="tint">
         <h1>Login to unleash the power!</h1>
         <div className="input-container">
           <input
@@ -63,6 +64,7 @@ class Login extends Component {
            Login
           </button>
              {message}
+        </div>
         </div>
       </div>
 

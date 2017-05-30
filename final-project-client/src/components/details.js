@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {store, actions} from './../store/store.js';
 import $ from 'jquery';
-import {withRouter} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import numeral from 'numeral';
 // const numeral = require('numeral');
 
@@ -61,13 +61,15 @@ class Details extends Component {
     let results = this.state.results;
     let breakdown;
     let styling = {
-      width: "100%",
-      height: "100%",
+      
+      width: "100vw",
+      height: "100vh",
       // backgroundColor: 'purple'
       backgroundImage: 'url('+`${imageURL}${results.backdrop_path}`+')',
       backgroundSize: 'cover',
       overflow: 'hidden',
-      repeat: 'noRepeat'
+      repeat: 'noRepeat',
+      color: 'yellow'
     }
     console.log(styling.backgroundImage)
     if (this.state.details.typeMedia === 'person') {
@@ -114,8 +116,8 @@ class Details extends Component {
 
 
     return (
-      <div>
-          return to results
+      <div className="details">
+          <Link to="/userdisplay/">Return to results</Link>
           {breakdown}
       </div>
     )

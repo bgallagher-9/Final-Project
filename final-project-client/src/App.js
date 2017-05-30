@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import './scss/App.css';
 import './scss/nav.css';
 import './scss/footer.css';
-import './scss/theater.css';
+import './scss/details.css';
 import './scss/favorites.css';
 import './scss/main-search.css';
 //************************************
@@ -25,7 +25,7 @@ import { store } from './store/store.js';
 // https://needanappname.herokuapp.com/
 
 const Home = () => (
-  <div className="home">
+  <div  className="home">
       <h2>Home</h2>
       <p>Let's do movies!</p>
   </div>
@@ -45,7 +45,7 @@ class UserDisplay extends Component {
 
   render() {
     return(
-      <div className="div-container">
+      <div className="userdisplay">
         <FavoritesList />
         <Movies />
       </div>
@@ -60,7 +60,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       <Component {...props}/>
     ) : (
       <Redirect to={{
-        pathname: '/home',
+        pathname: '/',
         state: { from: props.location }
       }}/>
     )
@@ -87,10 +87,12 @@ class App extends Component {
   render() {
     return(
       <Router>
-        <div>
+        <div className="backdrop">
           <div>
+            <div className="tint">
             <NavBar {...this.state} />
             <Footer />
+            </div>
           </div>
           <Route path="/" exact component={Home} />
           <Route path="/signup" render={(props) => <SignUp {...this.state} history={props.history} />} />
@@ -100,7 +102,6 @@ class App extends Component {
           <Route path="/things" component={Things} />
           <PrivateRoute path="/userdisplay/"  component={UserDisplay} />
           <PrivateRoute path="/details/" component={Details} />
-
         </div>
       </Router>
     );
