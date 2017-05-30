@@ -44,7 +44,7 @@ class SignUp extends Component {
                   </div>
         }
     return (
-      <div>
+      <div className="signup">
         <h1>Signup and join the greatness!</h1>
         <div className="input-container">
           <input type='text'
