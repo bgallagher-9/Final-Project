@@ -59,3 +59,14 @@ li img {
 .zero-search {
   text-align: center;
 }
+
+.is-favorite {
+  background-color: red;
+  height: 15px;
+  width: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  float: right;
+  display: inline;
+  margin-right: 10px;
+}

@@ -8,38 +8,25 @@ import { Link, withRouter } from 'react-router-dom';
 // require("bootstrap/less/bootstrap.less");
 
 const apiKey = '873eb20764b577e3b6adfa6f878f3379';
-
 const baseURL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=`;
-
 const imageURL = `https://image.tmdb.org/t/p/w500`;
 
 class MainSearch extends Component {
 
   constructor(){
     super();
-    this.state = store.getState().main;
+    this.state = store.getState();
   }
 
   componentDidMount() {
     this.unsub = store.subscribe(() => {
-      this.setState(store.getState().main);
-    }, this.markFavorite());
+      this.setState(store.getState());
+    });
   }
 
   componentWillUnmount() {
     this.unsub();
     console.log('unmounting?');
-  }
-
-   markFavorite() {
-    store.getState();
-    console.log(this.state);
-    // const classFave = this.state.favorites.map((x) => {
-    //   if (x.idMedia === this.state.results.idMedia) {
-    //       return 'mark-favorite'
-    //   }
-    //   else {''}
-    // })
   }
 
   handleQuery(input) {
@@ -122,7 +109,6 @@ class MainSearch extends Component {
       })
       store.dispatch(Object.assign({}, actions.GET_DATA, {
         results: fixedData,
-        totalItemsCount: data.total_results
       }, console.log(fixedData)));
     });
   }
@@ -153,9 +139,9 @@ class MainSearch extends Component {
       }
     })
     .done((data) => {
+      console.log('done');
       store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
-    }, this.markFavorite());
-
+    });
   }
 
   onToDetails(data) {
@@ -164,23 +150,30 @@ class MainSearch extends Component {
   }
 
   render() {
-    // console.log(this.state)
+    console.log(this.state)
+    let main = this.state.main;
+    let fava = this.state.favorites;
     let searchResults;
     let buttons;
-    if (this.state.results.length === 0) {
+    // const className = (fava.favorites.idMedia !== main.results.idMedia) ? 'mark-favorite' : 'favoritesItem';
+    // <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+
+    if (main.results.length === 0) {
       searchResults = <p className="zero-search">My search is ready.</p>
     }
     else {
-      const resultsSearch = this.state.results.map((x) => {
+      const resultsSearch = main.results.map((x) => {
       let url = '/no-image.png'
       if (x.artMedia !== 'no-image.png') {
         url = `${imageURL}/${x.artMedia}`
       }
+      const favToggle = fava.favorites.find(fav => fav.idMedia === x.idMedia) ? <span className="is-favorite"></span> : <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+    console.log(favToggle);
       if (x.typeMedia === 'person') {
         return <div className="card"  key={x.idMedia}>
                 <div className="card-block">
                   <li className="searchLis">
-                  <div className="favoritesItem {classFave}" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+                  {favToggle}
                   <img src={url} alt={x.nameMedia} />
                   <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
                   </li>
@@ -191,7 +184,7 @@ class MainSearch extends Component {
         return <div className="card" key={x.idMedia}>
                 <div className="card-block">
                 <li className="searchLis" >
-                  <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+                  {favToggle}
                   <img src={url} alt={x.nameMedia} />
                   <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
                   <p>Overview: {x.overview}</p>
@@ -202,19 +195,19 @@ class MainSearch extends Component {
       }
     })
 
-    if (this.state.pageNumber === 1 && this.state.results.length === 20) {
+    if (main.pageNumber === 1 && main.results.length === 20) {
       buttons = <div className="page-button">
       <button type="button" className="btn btn-elegant" onClick={() => this.handleNextClick()}>Next</button>
       </div>
     }
-    else if (this.state.pageNumber > 1 && this.state.results.length === 20) {
+    else if (main.pageNumber > 1 && main.results.length === 20) {
       buttons =
       <div className="page-button">
         <button type="button" className="btn btn-elegant" onClick={() => this.handlePrevClick()}>Previous</button>
         <button type="button" className="btn btn-elegant" onClick={() => this.handleNextClick()}>Next</button>
       </div>
     }
-    else if (this.state.pageNumber > 1 && this.state.results.length < 20) {
+    else if (main.pageNumber > 1 && main.results.length < 20) {
       buttons = <div className="page-button">
       <button type="button" className="btn btn-elegant" onClick={() => this.handlePrevClick()}>Previous</button>
 
@@ -229,9 +222,9 @@ class MainSearch extends Component {
         <div className="main-search-container">
           <div className="input-box">
             <Query
-              results={this.state.results}
+              results={main.results}
               querySubmit={(input) => this.handleQuery(input)}
-              query={this.state.query}
+              query={main.query}
                />
           </div>
             {searchResults}
