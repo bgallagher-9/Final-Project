@@ -13,7 +13,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type) {
     case constants.QUERY_HANDLE:
-      return Object.assign({}, state, { input: action.input })
+      return Object.assign({}, state, { input: action.input, pageNumber: 1 })
     case constants.GET_DATA:
       return Object.assign({}, state, { results: action.results });
     case constants.RETURN_CLEAR:
@@ -34,30 +34,9 @@ const reducer = (state = initialState, action) => {
         totalItemsCount: 0,
         itemsCountPerPage: 0,
       })
-    // case constants.PAGINATION:
-    //   return Object.assign({}, state, {
-    //     activePage: state.activePage,
-    //     totalItemsCount: action.totalItemsCount,
-    //     itemsCountPerPage: Math.ceil(state.totalItemsCount / 20)
-    //   })
     default:
       return state;
   }
 }
 
 module.exports = reducer;
-
-
-
-
-// render() {
-//   return (
-//     <Pagination
-//       hideDisabled
-//       activePage={this.state.activePage}
-//       itemsCountPerPage={PER_PAGE}
-//       totalItemsCount={TOTAL_COUNT}
-//       onChange={this.handlePageChange}
-//       />
-//      );
-//     }

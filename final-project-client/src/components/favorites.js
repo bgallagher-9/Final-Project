@@ -73,14 +73,14 @@ class FavoritesList extends Component {
       </ol>
     }
     return (
-        <div>
-          Favorites List
-          <div className="">
-            <div className="favorites-container">
-              {faveList}
-            </div>
+      <div>
+        Favorites List
+        <div className="">
+          <div className="favorites-container">
+            {faveList}
           </div>
         </div>
+      </div>
     );
   }
 }

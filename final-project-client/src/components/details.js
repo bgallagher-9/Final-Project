@@ -55,62 +55,74 @@ class Details extends Component {
 
   render() {
     console.log('rendering state1', this.state)
-    let url = 'no-image.png';
+    let url = '/no-image.png';
     if (this.state.details.artMedia !== 'no-image.png') {
       url = `${imageURL}/${this.state.details.artMedia}`}
     let results = this.state.results;
+    let url2;
+    if (this.state.results.backdrop_path === null) {
+      url2 = '/spotlights.png'}
+    else {url2 = `${imageURL}${results.backdrop_path}`}
+
     let breakdown;
     let styling = {
-      
       width: "100vw",
       height: "100vh",
-      // backgroundColor: 'purple'
-      backgroundImage: 'url('+`${imageURL}${results.backdrop_path}`+')',
+      backgroundImage: `url(${url2})`,
       backgroundSize: 'cover',
+      backgroundPosition: 'center',
       overflow: 'hidden',
       repeat: 'noRepeat',
-      color: 'yellow'
     }
-    console.log(styling.backgroundImage)
     if (this.state.details.typeMedia === 'person') {
       breakdown =
-      <div className="details-window">
-        <div className="favoritesItem"
-          onClick={(evt) => this.addToFavorites(evt)}></div>
-          <img className="poster-image" src={url} alt={results.title}/>
-          <p>Name: {results.name}</p>
-          <p>Birthday: {results.birthday}</p>
-          <p>Died: {results.deathday}</p>
-          <p>Bio: {results.biography}</p>
-          <p>Birth Place: {results.place_of_birth}</p>
-        </div>
+      <div className="card card-block detail-card">
+          <div className="details-window">
+            <div className="favoritesItemDetails"
+              onClick={(evt) => this.addToFavorites(evt)}></div>
+              <img className="poster-image" src={url} alt={results.title} />
+              <p>Name: {results.name}</p>
+              <p>Birthday: {results.birthday}</p>
+              <p>Died: {results.deathday}</p>
+              <p>Bio: {results.biography}</p>
+              <p>Birth Place: {results.place_of_birth}</p>
+          </div>
+      </div>
     }
     else if (this.state.details.typeMedia === 'movie') {
       breakdown =
-      <div className="details-window" style={ styling }>
-        <div className="favoritesItem"
-          onClick={(evt) => this.addToFavorites(evt)}></div>
-        <img className="poster-image" src={url} alt={results.title}/>
-        <p>Title: {results.title}</p>
-        <p>Runtime: {results.runtime} minutes.</p>
-        <p>Overview: {results.overview}</p>
-        <p>Budget: {numeral(this.state.results.budget).format('$0,0.00')}</p>
-        <p>Revenue: {numeral(this.state.results.revenue).format('$0,0.00')}</p>
-        <p>Date: {results.release_date}</p>
+      <div style={ styling }>
+        <div className="card card-block detail-card">
+          <div className="details-window">
+            <div className="favoritesItemDetails"
+              onClick={(evt) => this.addToFavorites(evt)}></div>
+            <img className="poster-image" src={url} alt={results.title} style={{opacity: '1'}}/>
+            <p>Title: {results.title}</p>
+            <p>Runtime: {results.runtime} minutes.</p>
+            <p>Overview: {results.overview}</p>
+            <p>Budget: {numeral(this.state.results.budget).format('$0,0.00')}</p>
+            <p>Revenue: {numeral(this.state.results.revenue).format('$0,0.00')}</p>
+            <p>Date: {results.release_date}</p>
+          </div>
+        </div>
       </div>
     }
     else {
       breakdown =
-      <div className="details-window" style={ styling }>
-        <div className="favoritesItem"
-          onClick={(evt) => this.addToFavorites(evt)}></div>
-        <img className="poster-image"src={url} alt={results.title}/>
-        <p>Title: {results.name}</p>
-        <p>Overview: {results.overview}</p>
-        <p>First Air Date: {results.first_air_date}</p>
-        <p>Last Air Date: {results.last_air_date}</p>
-        <p>Total Episodes: {results.number_of_episodes}</p>
-        <p>Total Seasons: {results.number_of_seasons}</p>
+      <div style={ styling }>
+        <div className="card card-block detail-card">
+          <div className="details-window" >
+            <div className="favoritesItemDetails"
+              onClick={(evt) => this.addToFavorites(evt)}></div>
+            <img className="poster-image"src={url} alt={results.title}/>
+            <p>Title: {results.name}</p>
+            <p>Overview: {results.overview}</p>
+            <p>First Air Date: {results.first_air_date}</p>
+            <p>Last Air Date: {results.last_air_date}</p>
+            <p>Total Episodes: {results.number_of_episodes}</p>
+            <p>Total Seasons: {results.number_of_seasons}</p>
+          </div>
+        </div>
       </div>
     }
 

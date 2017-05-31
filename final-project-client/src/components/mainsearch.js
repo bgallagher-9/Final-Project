@@ -12,9 +12,6 @@ const apiKey = '873eb20764b577e3b6adfa6f878f3379';
 const baseURL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=`;
 
 const imageURL = `https://image.tmdb.org/t/p/w500`;
-// var totalResults;
-// let url;
-// var pageCount;
 
 class MainSearch extends Component {
 
@@ -26,12 +23,23 @@ class MainSearch extends Component {
   componentDidMount() {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().main);
-    });
+    }, this.markFavorite());
   }
 
   componentWillUnmount() {
     this.unsub();
     console.log('unmounting?');
+  }
+
+   markFavorite() {
+    store.getState();
+    console.log(this.state);
+    // const classFave = this.state.favorites.map((x) => {
+    //   if (x.idMedia === this.state.results.idMedia) {
+    //       return 'mark-favorite'
+    //   }
+    //   else {''}
+    // })
   }
 
   handleQuery(input) {
@@ -40,7 +48,6 @@ class MainSearch extends Component {
   };
 
   makeAjaxCall() {
-    // console.log('pg#', this.state.pageNumber)
     const currentState = store.getState().main
     $.ajax({
       url: `${baseURL}/${currentState.queryInput}/&page=${currentState.pageNumber}&include_adult=false`
@@ -117,23 +124,8 @@ class MainSearch extends Component {
         results: fixedData,
         totalItemsCount: data.total_results
       }, console.log(fixedData)));
-      // totalResults = data.total_results;
-      // pageCount = Math.ceil(totalResults / 20);
-      // // console.log(pageCount)
     });
   }
-
-//   render() {
-//   return (
-//     <Pagination
-//       hideDisabled
-//       activePage={this.state.activePage}
-//       itemsCountPerPage={PER_PAGE}
-//       totalItemsCount={TOTAL_COUNT}
-//       onChange={this.handlePageChange}
-//       />
-//      );
-//     }
 
   handlePrevClick() {
     store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
@@ -150,7 +142,6 @@ class MainSearch extends Component {
 
   addToFavorites(x, evt) {
     console.log(x, 'x')
-
     $.ajax({
       url: '/api/favorite',
       method: 'POST',
@@ -163,7 +154,8 @@ class MainSearch extends Component {
     })
     .done((data) => {
       store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
-    });
+    }, this.markFavorite());
+
   }
 
   onToDetails(data) {
@@ -172,14 +164,15 @@ class MainSearch extends Component {
   }
 
   render() {
-    // console.log(this.state.main)
+    // console.log(this.state)
     let searchResults;
+    let buttons;
     if (this.state.results.length === 0) {
       searchResults = <p className="zero-search">My search is ready.</p>
     }
     else {
       const resultsSearch = this.state.results.map((x) => {
-      let url = 'no-image.png'
+      let url = '/no-image.png'
       if (x.artMedia !== 'no-image.png') {
         url = `${imageURL}/${x.artMedia}`
       }
@@ -187,7 +180,7 @@ class MainSearch extends Component {
         return <div className="card"  key={x.idMedia}>
                 <div className="card-block">
                   <li className="searchLis">
-                  <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
+                  <div className="favoritesItem {classFave}" onClick={(evt) => this.addToFavorites(x, evt)}></div>
                   <img src={url} alt={x.nameMedia} />
                   <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
                   </li>
@@ -208,6 +201,26 @@ class MainSearch extends Component {
               </div>
       }
     })
+
+    if (this.state.pageNumber === 1 && this.state.results.length === 20) {
+      buttons = <div className="page-button">
+      <button type="button" className="btn btn-elegant" onClick={() => this.handleNextClick()}>Next</button>
+      </div>
+    }
+    else if (this.state.pageNumber > 1 && this.state.results.length === 20) {
+      buttons =
+      <div className="page-button">
+        <button type="button" className="btn btn-elegant" onClick={() => this.handlePrevClick()}>Previous</button>
+        <button type="button" className="btn btn-elegant" onClick={() => this.handleNextClick()}>Next</button>
+      </div>
+    }
+    else if (this.state.pageNumber > 1 && this.state.results.length < 20) {
+      buttons = <div className="page-button">
+      <button type="button" className="btn btn-elegant" onClick={() => this.handlePrevClick()}>Previous</button>
+
+      </div>
+    }
+
     searchResults = <ol className="searchOL">
         {resultsSearch}
       </ol>
@@ -222,24 +235,10 @@ class MainSearch extends Component {
                />
           </div>
             {searchResults}
-          <div className="button-container">
-            <button type="button" className="btn btn-elegant" onClick={() => this.handlePrevClick()}>Previous</button>
-            <button type="button" className="btn btn-elegant" onClick={() => this.handleNextClick()}>Next</button>
-          </div>
+            {buttons}
         </div>
     )
   }
 }
 
 export default withRouter(MainSearch);
-
-
-
-
-// <Pagination className="users-pagination pull-right" bsSize="medium"
-//   hideDisabled
-//   activePage={this.state.activePage}
-//   itemsCountPerPage={this.state.itemsCountPerPage}
-//   totalItemsCount={this.state.totalItemsCount}
-//   onChange={this.handlePageChange}
-//   />

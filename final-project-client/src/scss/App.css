@@ -56,9 +56,9 @@ table {
   position: relative;
   color: white;
 }
-.backdrop {
+/*.backdrop {
   background-color: yellow;
-}
+}*/
 
 /*.tint {
   background-color: rgba(0, 0, 0, .5);
