@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// import './../scss/main-search.css';
-// import $ from 'jquery';
 import { store, actions } from './../store/store.js';
+
 
 
 class Query extends Component {

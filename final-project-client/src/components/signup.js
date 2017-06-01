@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-// import './sign-up.css';
 import { store, actions } from './../store/store.js';
+import './../index.css';
 
 class SignUp extends Component {
 
   handleUNChange(evt) {
-    store.dispatch( Object.assign({}, actions.SIGNUP_CHANGE_UN, { value: evt.target.value }));
+
   }
 
   handlePWChange(evt) {

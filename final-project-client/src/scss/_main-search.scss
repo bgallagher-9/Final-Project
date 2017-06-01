@@ -1,7 +1,7 @@
 .main-search-container {
   min-height: 400px;
   width: 50vw;
-  /*border: 1px solid black;*/
+  // border: 1px solid black;
   margin-left: 5vw;
   display: inline-flex;
   flex-direction: column;
@@ -14,25 +14,10 @@ input {
   display: block;
 }
 
-.button-container {
-  margin: 0 auto 65px auto;
-  /*background-color: yellow;*/
-  /*border: 1px solid black;*/
-}
-
 .page-button {
-  /*height: 25px;
-  width: 65px;
-  background-color: black;
-  color: white;*/
-  display: inline-block;
   text-align: center;
-  margin: 3px 0 20px;
+  margin: 5px 0 25px;
   cursor: pointer;
-}
-
-.searchOL {
-  /*border: 1px solid black;*/
 }
 
 .favoritesItem {
@@ -43,17 +28,11 @@ input {
   float: right;
   display: inline;
   margin-right: 10px;
-  /*margin-top: 10px;*/
 }
 
-/*li {
-  border: 1px solid black;
-  margin-top: 5px;
-}*/
-
-li img {
-  width: 75px;
-  height: 100px;
+.main-img {
+    width: 75px;
+    height: 100px;
 }
 
 .zero-search {
@@ -70,3 +49,15 @@ li img {
   display: inline;
   margin-right: 10px;
 }
+
+// .main-results {
+//   min-height: 400px;
+//   width: 20vw;
+//   /*border: 1px solid red;*/
+//   // float: left;
+//   /*position: fixed;
+//   left: 0;
+//   top: 75px;*/
+//   /*display: inline-flex;*/
+//   margin-bottom: 60px;
+// }

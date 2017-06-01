@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {store, actions} from './../store/store.js';
-// import bootstrap from 'bootstrap';
-// require('bootstrap');
+
 
 class Login extends Component {
 

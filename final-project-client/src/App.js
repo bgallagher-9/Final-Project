@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-//get scss going**********************
-import './scss/App.css';
-import './scss/nav.css';
-import './scss/footer.css';
-import './scss/details.css';
-import './scss/favorites.css';
-import './scss/main-search.css';
-//************************************
 import FavoritesList from './components/favorites.js';
 import Movies from './components/mainsearch.js';
 import SignUp from './components/signup.js';
@@ -18,8 +10,6 @@ import Things from './components/things.js';
 import NavBar from './components/navbar.js';
 import Details from './components/details.js';
 import { store } from './store/store.js';
-// import Modal from './modal.js';
-
 
 
 // https://needanappname.herokuapp.com/

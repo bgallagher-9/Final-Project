@@ -1,0 +1,33 @@
+.details-window p {
+  color: black;
+  font-size: 1.1em;
+  line-height: 1.2em;
+  width: 470px;
+  /*border: green 2px solid;*/
+}
+
+.card.detail-card {
+  /*border: red 2px solid;*/
+  width: 500px;
+  margin: 30px auto;
+  padding: 10px 10px 10px 10px;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, .8);
+}
+
+.favoritesItemDetails {
+  height: 15px;
+  width: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  float: right;
+  display: inline;
+  margin-right: 20px;
+  /*margin-top: 10px;*/
+}
+
+.favoritesItemDetails img {
+  height: 100px;
+  width: 75px;
+  border: 2px solid green;
+}

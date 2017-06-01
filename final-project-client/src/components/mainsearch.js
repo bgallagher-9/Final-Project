@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import './../scss/main-search.css';
 import $ from 'jquery';
 import { store, actions } from './../store/store.js';
 import Query from './../components/query.js';
 import { Link, withRouter } from 'react-router-dom';
-// import Pagination from "react-js-pagination";
-// require("bootstrap/less/bootstrap.less");
+
 
 const apiKey = '873eb20764b577e3b6adfa6f878f3379';
 const baseURL = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&language=en-US&query=`;
@@ -155,9 +153,6 @@ class MainSearch extends Component {
     let fava = this.state.favorites;
     let searchResults;
     let buttons;
-    // const className = (fava.favorites.idMedia !== main.results.idMedia) ? 'mark-favorite' : 'favoritesItem';
-    // <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
-
     if (main.results.length === 0) {
       searchResults = <p className="zero-search">My search is ready.</p>
     }
@@ -174,7 +169,7 @@ class MainSearch extends Component {
                 <div className="card-block">
                   <li className="searchLis">
                   {favToggle}
-                  <img src={url} alt={x.nameMedia} />
+                  <img className="main-img" src={url} alt={x.nameMedia} />
                   <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
                   </li>
                 </div>
@@ -185,7 +180,7 @@ class MainSearch extends Component {
                 <div className="card-block">
                 <li className="searchLis" >
                   {favToggle}
-                  <img src={url} alt={x.nameMedia} />
+                  <img className="main-img" src={url} alt={x.nameMedia} />
                   <p>Name: <Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
                   <p>Overview: {x.overview}</p>
                   <p>Date: {x.dateMedia}</p>
@@ -227,7 +222,9 @@ class MainSearch extends Component {
               query={main.query}
                />
           </div>
+          <div className="main-results">
             {searchResults}
+          </div>
             {buttons}
         </div>
     )

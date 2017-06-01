@@ -3,7 +3,8 @@ import {store, actions} from './../store/store.js';
 import $ from 'jquery';
 import { Link, withRouter } from 'react-router-dom';
 import numeral from 'numeral';
-// const numeral = require('numeral');
+
+
 
 const apiKey = '873eb20764b577e3b6adfa6f878f3379';
 const deetsURL1 = `https://api.themoviedb.org/3/`

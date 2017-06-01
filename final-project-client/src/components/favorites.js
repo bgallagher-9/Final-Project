@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import { store, actions } from './../store/store.js';
-import './../scss/favorites.css';
 import { Link, withRouter } from 'react-router-dom';
+
 
 const imageURL = `https://image.tmdb.org/t/p/w500`;
 

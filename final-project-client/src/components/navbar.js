@@ -3,6 +3,7 @@ import $ from 'jquery';
 import { store, actions } from './../store/store.js';
 import { Link, withRouter } from 'react-router-dom';
 
+
 class NavBar extends Component {
 
   handleLogout() {
