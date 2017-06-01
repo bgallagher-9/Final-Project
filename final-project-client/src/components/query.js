@@ -20,7 +20,7 @@ class Query extends Component {
     return(
       <div className="input">
         <input
-          placeholder="What would you like to search for today?" onKeyUp={(evt) => {this.handleQuery(evt)}}
+          placeholder="Search me!" onKeyUp={(evt) => {this.handleQuery(evt)}}
           onChange={(evt) => {this.handleChange(evt)}}
           value={this.props.queryInput}
           />
