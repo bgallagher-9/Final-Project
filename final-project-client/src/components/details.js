@@ -61,7 +61,7 @@ class Details extends Component {
       url = `${imageURL}/${this.state.details.artMedia}`}
     let results = this.state.results;
     let url2;
-    if (this.state.results.backdrop_path !== null) {
+    if (this.state.results.backdrop_path !== null && this.state.details.typeMedia !== 'person') {
       url2 = `${imageURL}${results.backdrop_path}`}
     else {url2 = '/spotlights.png'}
 
