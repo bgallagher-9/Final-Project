@@ -5,6 +5,7 @@ const favState = {
 }
 
 const reducer = (state = favState, action) => {
+  console.log(action.type);
   switch(action.type) {
     case constants.GET_FAVORITES:
       return Object.assign({}, state, { favorites: action.favorites });
@@ -13,12 +14,18 @@ const reducer = (state = favState, action) => {
     case constants.ADD_TO_FAVORITES:
       const favorites = state.favorites.slice();
       favorites.push(action.favorites);
-      return Object.assign({}, state, { favorites: favorites }, console.log('favorites from store', favorites));
+
+      var stately = Object.assign({}, state, { favorites: favorites });
+      console.log('add_to_favorites', stately)
+      return stately
     case constants.DELETE_FAVORITES:
-          const copyFaves = state.favorites.slice();
-          const index = copyFaves.indexOf(action.favorites);
-          copyFaves.splice(index, 1);
-      return Object.assign({}, state, { favorites: copyFaves });
+      const copyFaves = state.favorites.slice();
+      const index = copyFaves.indexOf(action.favorites);
+      copyFaves.splice(index, 1);
+
+      var stately2 = Object.assign({}, state, { favorites: copyFaves });
+      console.log('delete_favorites state', stately2)
+      return stately2;
     default:
       return state;
   }

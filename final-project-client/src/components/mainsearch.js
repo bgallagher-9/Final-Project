@@ -19,12 +19,13 @@ class MainSearch extends Component {
   componentDidMount() {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState());
+      console.log('main favs mount', store.getState().favorites.favorites.length)
     });
   }
 
   componentWillUnmount() {
     this.unsub();
-    console.log('unmounting?');
+    console.log('unmounting');
   }
 
   handleQuery(input) {
@@ -137,10 +138,20 @@ class MainSearch extends Component {
       }
     })
     .done((data) => {
-      console.log('done');
       store.dispatch(Object.assign({}, actions.ADD_TO_FAVORITES, { favorites: data }))
     });
   }
+
+  removeFavorite(x, evt) {
+    console.log('x', x);
+    $.ajax({
+      url: `/api/favorites/${x._id}`,
+      method: 'DELETE'
+    })
+    .done(() => {
+      store.dispatch(Object.assign({}, actions.DELETE_FAVORITES, { favorites: x }));
+    })
+  };
 
   onToDetails(data) {
     store.dispatch(Object.assign({}, actions.ON_TO_DETAILS, { details: data }));
@@ -148,7 +159,7 @@ class MainSearch extends Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log('main favs render',this.state.favorites.favorites.length)
     let main = this.state.main;
     let fava = this.state.favorites;
     let searchResults;
@@ -162,8 +173,8 @@ class MainSearch extends Component {
       if (x.artMedia !== 'no-image.png') {
         url = `${imageURL}/${x.artMedia}`
       }
-      const favToggle = fava.favorites.find(fav => fav.idMedia === x.idMedia) ? <span className="is-favorite"></span> : <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
-    console.log(favToggle);
+      const favInDeets = fava.favorites.find(fav => fav.idMedia === x.idMedia);
+      const favToggle = favInDeets ? <span className="is-favorite" onClick={(evt) => this.removeFavorite(favInDeets, evt)}></span> : <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
       if (x.typeMedia === 'person') {
         return <div className="card"  key={x.idMedia}>
                 <div className="card-block">

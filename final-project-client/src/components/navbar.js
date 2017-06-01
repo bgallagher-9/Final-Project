@@ -25,7 +25,7 @@ class NavBar extends Component {
         <div className="name">
           Welcome back, {this.props.welcomeName}
         </div>
-        <div className="collapse navbar-collapse justify-content-end" id="naving" >
+        <div className="collapse(hide) navbar-collapse justify-content-end" id="naving" >
           <ul className="navbar-nav float-right">
             <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
             <Link className="nav-link" to="/things"><li className="nav-item">Things</li></Link>

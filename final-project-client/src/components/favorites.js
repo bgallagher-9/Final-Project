@@ -17,19 +17,16 @@ class FavoritesList extends Component {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState().favorites)
     });
-    // if (this.state.favorites.length === 0) {
       $.ajax({
         url: '/api/favorites'
       })
       .done((data) => {
         store.dispatch(Object.assign({}, actions.GET_FAVORITES, { favorites: data }));
       });
-    // }
   }
 
   componentWillUnmount(){
     this.unsub();
-    console.log('unmounting?');
   }
 
   removeFavorite(x, evt) {
