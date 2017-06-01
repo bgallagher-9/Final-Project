@@ -2,19 +2,20 @@
   min-height: 400px;
   width: 50vw;
   // border: 1px solid black;
-  margin-left: 5vw;
+  margin-left: 10vw;
   display: inline-flex;
   flex-direction: column;
 }
 
-// require("!style!css!bootstrap/dist/css");
-// require("!style!css!bootstrap/dist/css/bootstrap.css")
-
-input {
+.input {
+  margin: 0 auto 30px;
   height: 30px;
   width: 35vw;
-  margin: 0 auto;
-  display: block;
+  input {
+    height: 30px;
+    width: 35vw;
+    display: block;
+  }
 }
 
 .page-button {
@@ -53,14 +54,6 @@ input {
   margin-right: 10px;
 }
 
-// .main-results {
-//   min-height: 400px;
-//   width: 20vw;
-//   /*border: 1px solid red;*/
-//   // float: left;
-//   /*position: fixed;
-//   left: 0;
-//   top: 75px;*/
-//   /*display: inline-flex;*/
-//   margin-bottom: 60px;
-// }
+.card {
+  margin-top: 15px;
+}
