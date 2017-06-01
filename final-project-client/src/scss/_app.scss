@@ -7,19 +7,6 @@
   position: relative;
   color: white;
 }
-/*.backdrop {
-  background-color: yellow;
-}*/
-
-/*.tint {
-  background-color: rgba(0, 0, 0, .5);
-  position: absolute;
-  top:50px;
-  right:0;
-  left:0;
-  bottom:0;
-  height: 100vh;
-}*/
 
 .login {
   background-image: url('/red-carpet.jpg');
@@ -28,7 +15,6 @@
   height: 100vh;
   width: 100vw;
   background-position: center;
-  /*color: white;*/
 }
 
 .signup {
@@ -38,7 +24,6 @@
   height: 100vh;
   width: 100vw;
   background-position: center;
-  /*color: white;*/
 }
 
 .login h1 {
@@ -47,7 +32,6 @@
 
 .name {
   color: white;
-  /*border: 2px red solid;*/
   display: inline;
 }
 
@@ -55,35 +39,9 @@
   background-color: white;
 }
 
-/*.modal {
-  position: fixed;
-  top: 100px;
-  left: 100px;
-  right: 100px;
-  bottom: 100px;
-  border: 1px solid black;
-  background: lightgrey;
-  overflow: auto;
-  border-radius: 4px;
-  outline: none;
-  padding: 20px;
-  display: block;
-}*/
-
-
-/*.details-background {
-  background-color: rgba(0, 0, 0, .4);
-  min-height: 100vh;
-  width: 100vw;
-  opacity: .
-}*/
-
 .details-window {
   height: 500px;
   width: 500px;
-
-  /*background-color: white;*/
-  /*z-index: 3*/
 }
 
 .poster-image {

@@ -61,9 +61,9 @@ class Details extends Component {
       url = `${imageURL}/${this.state.details.artMedia}`}
     let results = this.state.results;
     let url2;
-    if (this.state.results.backdrop_path === null) {
-      url2 = '/spotlights.png'}
-    else {url2 = `${imageURL}${results.backdrop_path}`}
+    if (this.state.results.backdrop_path !== null) {
+      url2 = `${imageURL}${results.backdrop_path}`}
+    else {url2 = '/spotlights.png'}
 
     let breakdown;
     let styling = {
@@ -75,9 +75,11 @@ class Details extends Component {
       overflow: 'hidden',
       repeat: 'noRepeat',
     }
+    console.log(url2);
     if (this.state.details.typeMedia === 'person') {
       breakdown =
-      <div className="card card-block detail-card">
+      <div style={ styling }>
+        <div className="card card-block detail-card">
           <div className="details-window">
             <div className="favoritesItemDetails"
               onClick={(evt) => this.addToFavorites(evt)}></div>
@@ -88,6 +90,7 @@ class Details extends Component {
               <p>Bio: {results.biography}</p>
               <p>Birth Place: {results.place_of_birth}</p>
           </div>
+        </div>
       </div>
     }
     else if (this.state.details.typeMedia === 'movie') {
