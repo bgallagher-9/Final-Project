@@ -21,8 +21,8 @@ class NavBar extends Component {
     let loggedOn;
     if (this.props.isLoggedOn) {
       loggedOn =
-      <div className="">
-        <div className="name">
+      <div>
+        <div>
           Welcome back, {this.props.welcomeName}
         </div>
         <div className="collapse navbar-collapse justify-content-end" id="naving" >
@@ -30,7 +30,7 @@ class NavBar extends Component {
             <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
             <Link className="nav-link" to="/things"><li className="nav-item">Things</li></Link>
             <Link className="nav-link" to="/userdisplay">Search</Link>
-            <li className="nav-link" onClick={() => this.handleLogout()}>Logout</li>
+            <li className="nav-link logout" onClick={() => this.handleLogout()}>Logout</li>
           </ul>
         </div>
       </div>

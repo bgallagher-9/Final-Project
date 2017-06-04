@@ -51,10 +51,7 @@ class UserDisplay extends Component {
 //Following the RR example here: https://reacttraining.com/react-router/web/example/auth-workflow
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    store.getState().auth.isLoggedOn ? (<Component to={{
-      pathname: '/userdisplay',
-      state: { from: props.location }
-    }} {...props}/>
+    store.getState().auth.isLoggedOn ? (<Component {...props}/>
   ) : (
     <Redirect to={{
         pathname: '/',

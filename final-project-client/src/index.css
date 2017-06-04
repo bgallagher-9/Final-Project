@@ -152,11 +152,10 @@ footer {
   text-align: center;
   margin-top: 10px; }
 
-Link .navbar-brand .collapse.navbar-collapse.justify-content-end {
-  display: inline; }
-
 .navbar {
   border-radius: 0; }
+  .navbar .nav-link.logout {
+    cursor: pointer; }
 
 .favorites-container {
   min-height: 400px;

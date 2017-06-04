@@ -26,7 +26,7 @@ class SignUp extends Component {
       store.dispatch(Object.assign({}, actions.SIGNUP_SUCCESS));
       this.props.history.push('/');
       // setTimeout(() => {this.props.history.push('/') }, 2500);
-
+      this.props.history.push('/userdisplay');
     })
     .fail((xhr, error, responseText) => {
       store.dispatch(Object.assign({}, actions.SIGNUP_FAIL, { message: xhr.responseText }));

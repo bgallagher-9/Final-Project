@@ -23,7 +23,7 @@ class Login extends Component {
     }).done((data) => {
       store.dispatch(Object.assign({}, actions.LOGIN_SUCCESS));
       // setTimeout(() => {this.props.history.push('/') }, 2500);
-      this.props.history.push('/');
+      this.props.history.push('/userdisplay');
     }).fail((xhr, error, responseText) => {
       // console.log(xhr);
       store.dispatch(Object.assign({}, actions.LOGIN_FAIL, {message: xhr.responseText}));
