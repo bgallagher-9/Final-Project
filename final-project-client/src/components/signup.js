@@ -45,9 +45,10 @@ class SignUp extends Component {
         }
     return (
       <div className="signup">
-        <div className="">
-        <h1>Signup and join the greatness!</h1>
-        <div className="container-md input-container">
+        <div >
+
+        <div className="input-container card card-block">
+          <h1 >Signup and join the greatness!</h1>
           <input type='text'
                  className="form-control"
                  id="form2"

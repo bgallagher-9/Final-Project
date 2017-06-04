@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class About extends Component {
   render() {
     return(
-      <div>
+      <div className="about">
         Totally abouting around here.
         about
         about
@@ -16,4 +16,4 @@ class About extends Component {
 }
 
 
-module.exports = About;
+export default About;

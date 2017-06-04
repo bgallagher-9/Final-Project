@@ -1,50 +1,23 @@
 .home {
-  background-image: url('/hometv.jpeg');
+  // background-image: url('/open-movie.mp4');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   width: 100vw;
-  position: relative;
-  color: white;
-}
-
-.login {
-  background-image: url('/red-carpet.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
+  // position: relative;
   background-position: center;
-}
-
-.signup {
-  background-image: url('/side-boxoffice.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
-  background-position: center;
-}
-
-.login h1 {
   color: white;
-}
-
-.name {
-  color: white;
-  display: inline;
 }
 
 .userdisplay {
   background-color: white;
 }
 
-// .details-window {
-//   height: 500px;
-//   width: 500px;
-// }
-
 .poster-image {
   width: 200px;
   height: 250px;
+}
+
+.backdrop {
+  width: 100vw;
 }

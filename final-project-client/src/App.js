@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 
 import FavoritesList from './components/favorites.js';
 import Movies from './components/mainsearch.js';
@@ -9,17 +9,42 @@ import About from './components/about.js';
 import Things from './components/things.js';
 import NavBar from './components/navbar.js';
 import Details from './components/details.js';
+import NotFound from './components/notfound.js';
 import { store } from './store/store.js';
 
 
 // https://needanappname.herokuapp.com/
 
-const Home = () => (
-  <div  className="home">
-      <h2>Home</h2>
-      <p>Let's do movies!</p>
-  </div>
-)
+class Home extends Component {
+  render() {
+    return (
+      <div id="video-carousel-example" className="carousel carousel-fade" data-ride="carousel">
+        <ol>
+            <li data-target="#video-carousel-example" data-slide-to="0" className="active"></li>
+            <li data-target="#video-carousel-example" data-slide-to="1"></li>
+            <li data-target="#video-carousel-example" data-slide-to="2"></li>
+        </ol>
+        <div className="carousel-inner" role="listbox">
+          <div className="carousel-item active">
+              <video className="video-fluid" autoPlay loop>
+                  <source src="/open-movie.mp4" type="video/mp4" />
+              </video>
+          </div>
+          <div className="carousel-item">
+              <video className="video-fluid" autoPlay loop>
+                  <source src="/Popcorn.mp4" type="video/mp4" />
+              </video>
+          </div>
+          <div className="carousel-item">
+              <video className="video-fluid" autoPlay loop>
+                  <source src="/home-tv.mp4" type="video/mp4" />
+              </video>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
 
 class Footer extends Component {
   render() {
@@ -32,7 +57,6 @@ class Footer extends Component {
 }
 
 class UserDisplay extends Component {
-
   render() {
     return(
       <div className="userdisplay">
@@ -58,7 +82,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 )
 
 class App extends Component {
-
   constructor(){
       super();
       this.state = store.getState().auth;
@@ -77,21 +100,26 @@ class App extends Component {
   render() {
     return(
       <Router>
-        <div className="backdrop">
-          <div>
-            <div className="tint">
-            <NavBar {...this.state} />
-            <Footer />
+        <div>
+          <div className="backdrop">
+            <div>
+              <div className="tint">
+                <NavBar {...this.state} />
+              <Footer />
+              </div>
             </div>
-          </div>
-          <Route path="/" exact component={Home} />
-          <Route path="/signup" render={(props) => <SignUp {...this.state} history={props.history} />} />
-          <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/signup" render={(props) => <SignUp {...this.state} history={props.history} />} />
+              <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
+              <Route path="/about" component={About} />
+              <Route path="/things" component={Things} />
 
-          <Route path="/about" component={About} />
-          <Route path="/things" component={Things} />
-          <PrivateRoute path="/userdisplay/"  component={UserDisplay} />
-          <PrivateRoute path="/details/" component={Details} />
+              <PrivateRoute path="/userdisplay"  component={UserDisplay} />
+              <PrivateRoute path="/details" component={Details} />
+            </Switch>
+        </div>
+
         </div>
       </Router>
     );

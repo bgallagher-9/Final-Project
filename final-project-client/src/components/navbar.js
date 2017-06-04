@@ -25,7 +25,7 @@ class NavBar extends Component {
         <div className="name">
           Welcome back, {this.props.welcomeName}
         </div>
-        <div className="collapse(hide) navbar-collapse justify-content-end" id="naving" >
+        <div className="collapse navbar-collapse justify-content-end" id="naving" >
           <ul className="navbar-nav float-right">
             <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
             <Link className="nav-link" to="/things"><li className="nav-item">Things</li></Link>
@@ -48,21 +48,17 @@ class NavBar extends Component {
         </div>
     }
     return(
-    <div>
       <header>
-          <nav className="navbar navbar-toggleable-sm navbar-dark bg-primary">
-            <div className="container">
-              <div className="">
+          <nav className="navbar navbar-dark mdb-color darken-4 navbar-toggleable-sm">
+            <Link className="navbar-brand" to="/">Home (logo)</Link>
+
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#naving" aria-controls="naving" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
                 </button>
-                  <Link className="navbar-brand" to="/">Home (logo)</Link>
-                </div>
+
               {loggedOn}
-            </div>
           </nav>
       </header>
-    </div>
 
 
     )
