@@ -18,30 +18,11 @@ import { store } from './store/store.js';
 class Home extends Component {
   render() {
     return (
-      <div id="video-carousel-example" className="carousel carousel-fade" data-ride="carousel">
-        <ol>
-            <li data-target="#video-carousel-example" data-slide-to="0" className="active"></li>
-            <li data-target="#video-carousel-example" data-slide-to="1"></li>
-            <li data-target="#video-carousel-example" data-slide-to="2"></li>
-        </ol>
-        <div className="carousel-inner" role="listbox">
-          <div className="carousel-item active">
-              <video className="video-fluid" autoPlay loop>
-                  <source src="/open-movie.mp4" type="video/mp4" />
-              </video>
-          </div>
-          <div className="carousel-item">
-              <video className="video-fluid" autoPlay loop>
-                  <source src="/Popcorn.mp4" type="video/mp4" />
-              </video>
-          </div>
-          <div className="carousel-item">
-              <video className="video-fluid" autoPlay loop>
-                  <source src="/home-tv.mp4" type="video/mp4" />
-              </video>
-          </div>
-        </div>
+      <div  className="home">
+          <h2>Home</h2>
+          <p>Let's do movies!</p>
       </div>
+
     )
   }
 }
@@ -70,10 +51,12 @@ class UserDisplay extends Component {
 //Following the RR example here: https://reacttraining.com/react-router/web/example/auth-workflow
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
-    store.getState().auth.isLoggedOn ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
+    store.getState().auth.isLoggedOn ? (<Component to={{
+      pathname: '/userdisplay',
+      state: { from: props.location }
+    }} {...props}/>
+  ) : (
+    <Redirect to={{
         pathname: '/',
         state: { from: props.location }
       }}/>

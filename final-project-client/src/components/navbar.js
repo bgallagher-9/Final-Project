@@ -51,11 +51,9 @@ class NavBar extends Component {
       <header>
           <nav className="navbar navbar-dark mdb-color darken-4 navbar-toggleable-sm">
             <Link className="navbar-brand" to="/">Home (logo)</Link>
-
-                <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#naving" aria-controls="naving" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
-
+              <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#naving" aria-controls="naving" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>S
               {loggedOn}
           </nav>
       </header>

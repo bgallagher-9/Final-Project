@@ -96,6 +96,7 @@ table {
   margin-top: 15px; }
 
 .home {
+  background-image: url("/hometv.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
