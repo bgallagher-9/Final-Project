@@ -1,10 +1,40 @@
+
 .favorites-container {
-  min-height: 400px;
+  height: 80vh;
   width: 17vw;
-  float: left;
-  margin-bottom: 60px;
-    img {
-      height: 100px;
-      width: 75px;
+  overflow: auto;
+  .favorites-results-container {
+    height: 27vh;
+    width: 16vw;
+    float: left;
+    margin-bottom: 60px;
+    text-align: center;
+    font-size: .8em;
+
+    .card-block.favLis {
+      padding: 3px;
+      background-color: rgba(255, 255, 255, .9);
+
+      .remove {
+        display: inline-block;
+        padding: 0 3px;
+        border-radius: 15px;
+        color: white;
+        background-color: red;
+        font-size: .7em;
+      }
+      img {
+        min-height: 10vh;
+        min-width: 14vw;
+        margin: 0 auto;
+      }
     }
+  }
+}
+
+.fav-title {
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+  padding-top: 2vh
 }

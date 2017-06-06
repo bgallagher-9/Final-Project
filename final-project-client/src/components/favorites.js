@@ -51,18 +51,16 @@ class FavoritesList extends Component {
     }
     else {
       const faves = this.state.favorites.map((x, i) => {
-        let url = 'no-image.png';
+        let url = '/no-image.png';
         if (x.artMedia !== 'no-image.png') {
           url = `${imageURL}/${x.artMedia}`
           }
-        return <div className="card" key={x.idMedia + i}>
-                <div className="card-block">
+        return <div className="card card-block favLis" key={x.idMedia + i}>
                   <li >
                     <img src={url} alt={x.nameMedia} />
-                    <p><Link to="/details/" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
-                    <button type="button" onClick={(evt) => this.removeFavorite(x, evt)}>remove</button>
+                    <p><Link to="/details" onClick={() => this.onToDetails(x)}>{x.nameMedia}</Link></p>
+                    <div className="remove"  onClick={(evt) => this.removeFavorite(x, evt)}>remove</div>
                   </li>
-                </div>
               </div>
       });
       faveList = <ol>
@@ -71,9 +69,9 @@ class FavoritesList extends Component {
     }
     return (
       <div>
-        Favorites List
-        <div className="">
-          <div className="favorites-container">
+        <h1 className="fav-title">Favorites List</h1>
+        <div className="favorites-container">
+          <div className="favorites-results-container">
             {faveList}
           </div>
         </div>

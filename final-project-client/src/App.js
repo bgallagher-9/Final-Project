@@ -19,10 +19,11 @@ class Home extends Component {
   render() {
     return (
       <div  className="home">
-          <h2>Home</h2>
-          <p>Let's do movies!</p>
+        <div className="home-title">
+          <h2>My Movie Search</h2>
+          <h6>Let's do movies!</h6>
+        </div>
       </div>
-
     )
   }
 }
@@ -31,7 +32,7 @@ class Footer extends Component {
   render() {
     return(
       <footer>
-        <div>My Movie Search App.  Created by Brian Gallagher.  Powered by The Movie Database.  <a href="www.themoviedb.org"><img src="./moviedb.png" alt="The MovieDB"/></a></div>
+        <div>My Movie Search App.  Created by Brian Gallagher.  Powered by The Movie Database.  <a href="https://www.themoviedb.org" target="_blank"><img src="./moviedb.png" alt="The MovieDB"/></a></div>
       </footer>
     )
   }
@@ -94,7 +95,7 @@ class App extends Component {
               <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
               <Route path="/about" component={About} />
               <Route path="/theapp" component={TheApp} />
-
+              <Route component={NotFound} />
               <PrivateRoute path="/userdisplay"  component={UserDisplay} />
               <PrivateRoute path="/details" component={Details} />
             </Switch>

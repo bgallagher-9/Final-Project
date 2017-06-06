@@ -6,11 +6,41 @@
   width: 100vw;
   // position: relative;
   background-position: center;
-  color: white;
+  padding-top: 25vh;
+
+
+
+
+  .home-title {
+    height: 30vh;
+    width: 90vw;
+    margin: 0 auto ;
+    color: white;
+    text-align: center;
+
+    h2 {
+      font-size: 2.7em;
+    }
+    h6 {
+      font-size: 1.4em;
+    }
+    // p {
+    //   font-size: .8em;
+    //   padding-top: 2vh;
+    // }
+  }
 }
 
 .userdisplay {
-  background-color: white;
+  background-image: url('/film.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  // color: white;
+  // background-color: white;
+  display: inline-flex;
 }
 
 .poster-image {

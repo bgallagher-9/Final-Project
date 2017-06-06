@@ -120,9 +120,9 @@ class MainSearch extends Component {
   }
 
   handleNextClick() {
-      store.dispatch(Object.assign({}, actions.INCREMENT_PAGE));
-      this.makeAjaxCall();
-      window.scrollTo(0, 0);
+    store.dispatch(Object.assign({}, actions.INCREMENT_PAGE));
+    this.makeAjaxCall();
+    window.scrollTo(0, 0);
   }
 
   addToFavorites(x, evt) {
@@ -176,8 +176,8 @@ class MainSearch extends Component {
       const favInDeets = fava.favorites.find(fav => fav.idMedia === x.idMedia);
       const favToggle = favInDeets ? <span className="is-favorite" onClick={(evt) => this.removeFavorite(favInDeets, evt)}></span> : <div className="favoritesItem" onClick={(evt) => this.addToFavorites(x, evt)}></div>
       if (x.typeMedia === 'person') {
-        return <div className="card"  key={x.idMedia}>
-                <div className="card-block">
+        return <div className="card card-block searchLis"  key={x.idMedia}>
+                <div className="">
                   <li className="searchLis">
                   {favToggle}
                   <img className="main-img" src={url} alt={x.nameMedia} />
@@ -187,8 +187,8 @@ class MainSearch extends Component {
               </div>
       }
       else {
-        return <div className="card" key={x.idMedia}>
-                <div className="card-block">
+        return <div className="card card-block searchLis" key={x.idMedia}>
+                <div className="">
                 <li className="searchLis" >
                   {favToggle}
                   <img className="main-img" src={url} alt={x.nameMedia} />
@@ -216,7 +216,6 @@ class MainSearch extends Component {
     else if (main.pageNumber > 1 && main.results.length < 20) {
       buttons = <div className="page-button">
       <button type="button" className="btn btn-elegant" onClick={() => this.handlePrevClick()}>Previous</button>
-
       </div>
     }
 
@@ -226,19 +225,19 @@ class MainSearch extends Component {
   };
     return(
       <div className="main-container">
+        <div className="input-box">
+          <Query
+            results={main.results}
+            querySubmit={(input) => this.handleQuery(input)}
+            query={main.query}
+             />
+        </div>
         <div className="main-search-container">
-          <div className="input-box">
-            <Query
-              results={main.results}
-              querySubmit={(input) => this.handleQuery(input)}
-              query={main.query}
-               />
-          </div>
           <div className="main-results">
             {searchResults}
           </div>
-            {buttons}
         </div>
+        {buttons}
       </div>
     )
   }

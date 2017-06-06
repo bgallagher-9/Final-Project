@@ -21,8 +21,6 @@ class NavBar extends Component {
     let loggedOn;
     if (this.props.isLoggedOn) {
       loggedOn =
-      <div>
-        
         <div className="collapse navbar-collapse justify-content-end" id="naving" >
           <ul className="navbar-nav float-right">
             <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
@@ -31,8 +29,6 @@ class NavBar extends Component {
             <li className="nav-link logout" onClick={() => this.handleLogout()}>Logout</li>
           </ul>
         </div>
-      </div>
-
     }
     else {
       loggedOn =
@@ -48,7 +44,7 @@ class NavBar extends Component {
     return(
       <header>
           <nav className="navbar navbar-dark mdb-color darken-4 navbar-toggleable-sm">
-            <Link className="navbar-brand" to="/">Home (logo)</Link>
+            <Link className="navbar-brand" to="/">Home</Link>
               <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#naving" aria-controls="naving" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
