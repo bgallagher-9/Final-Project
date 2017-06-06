@@ -90,14 +90,15 @@ class App extends Component {
               </div>
             </div>
             <Switch>
+
               <Route path="/" exact component={Home} />
               <Route path="/signup" render={(props) => <SignUp {...this.state} history={props.history} />} />
               <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
               <Route path="/about" component={About} />
               <Route path="/theapp" component={TheApp} />
-              <Route component={NotFound} />
               <PrivateRoute path="/userdisplay"  component={UserDisplay} />
               <PrivateRoute path="/details" component={Details} />
+              <Route component={NotFound} />
             </Switch>
         </div>
 

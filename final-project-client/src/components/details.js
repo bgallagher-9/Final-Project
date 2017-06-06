@@ -149,7 +149,7 @@ class Details extends Component {
 
     return (
       <div className="details">
-          <Link to="/userdisplay/">Return to results</Link>
+          <Link to="/userdisplay">Return to results</Link>
           {breakdown}
       </div>
     )
