@@ -1,5 +1,5 @@
 footer {
-  height: 20px;
+  height: 4vh;;
   background-color: black;
   color: white;
   bottom: 0;
@@ -8,4 +8,9 @@ footer {
   position: fixed;
   text-align: center;
   margin-top: 10px;
+
+  img{
+    width: 3vw;
+    height: 3vh;
+  }
 }

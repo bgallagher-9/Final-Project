@@ -6,7 +6,7 @@ import Movies from './components/mainsearch.js';
 import SignUp from './components/signup.js';
 import Login from './components/login.js';
 import About from './components/about.js';
-import Things from './components/things.js';
+import TheApp from './components/theapp.js';
 import NavBar from './components/navbar.js';
 import Details from './components/details.js';
 import NotFound from './components/notfound.js';
@@ -31,7 +31,7 @@ class Footer extends Component {
   render() {
     return(
       <footer>
-        <div>this is the footer.  put some stuff here.</div>
+        <div>My Movie Search App.  Created by Brian Gallagher.  Powered by The Movie Database.  <a href="www.themoviedb.org"><img src="./moviedb.png" alt="The MovieDB"/></a></div>
       </footer>
     )
   }
@@ -93,7 +93,7 @@ class App extends Component {
               <Route path="/signup" render={(props) => <SignUp {...this.state} history={props.history} />} />
               <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
               <Route path="/about" component={About} />
-              <Route path="/things" component={Things} />
+              <Route path="/theapp" component={TheApp} />
 
               <PrivateRoute path="/userdisplay"  component={UserDisplay} />
               <PrivateRoute path="/details" component={Details} />

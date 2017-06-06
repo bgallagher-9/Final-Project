@@ -225,6 +225,7 @@ class MainSearch extends Component {
       </ol>
   };
     return(
+      <div className="main-container">
         <div className="main-search-container">
           <div className="input-box">
             <Query
@@ -238,6 +239,7 @@ class MainSearch extends Component {
           </div>
             {buttons}
         </div>
+      </div>
     )
   }
 }

@@ -22,13 +22,11 @@ class NavBar extends Component {
     if (this.props.isLoggedOn) {
       loggedOn =
       <div>
-        <div>
-          Welcome back, {this.props.welcomeName}
-        </div>
+        
         <div className="collapse navbar-collapse justify-content-end" id="naving" >
           <ul className="navbar-nav float-right">
             <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
-            <Link className="nav-link" to="/things"><li className="nav-item">Things</li></Link>
+            <Link className="nav-link" to="/theapp"><li className="nav-item">The App</li></Link>
             <Link className="nav-link" to="/userdisplay">Search</Link>
             <li className="nav-link logout" onClick={() => this.handleLogout()}>Logout</li>
           </ul>
@@ -41,7 +39,7 @@ class NavBar extends Component {
         <div className="collapse navbar-collapse justify-content-end" id="naving" >
           <ul className="navbar-nav float-right">
             <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
-            <Link className="nav-link" to="/things"><li className="nav-item">Things</li></Link>
+            <Link className="nav-link" to="/theapp"><li className="nav-item">The App</li></Link>
             <Link className="nav-link" to="/login"><li className="nav-item">Login</li></Link>
             <Link className="nav-link" to="/signup"><li className="nav-item">Signup</li></Link>
           </ul>
@@ -53,7 +51,7 @@ class NavBar extends Component {
             <Link className="navbar-brand" to="/">Home (logo)</Link>
               <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#naving" aria-controls="naving" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
-              </button>S
+              </button>
               {loggedOn}
           </nav>
       </header>

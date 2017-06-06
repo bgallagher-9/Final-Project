@@ -46,11 +46,13 @@ table {
   border-spacing: 0; }
 
 .main-search-container {
-  min-height: 400px;
-  width: 50vw;
+  height: 80vh;
+  width: 65vw;
+  border: 1px solid black;
   margin-left: 10vw;
   display: inline-flex;
-  flex-direction: column; }
+  flex-direction: column;
+  overflow: auto; }
 
 .input {
   margin: 0 auto 30px;
@@ -142,7 +144,7 @@ table {
   border: 2px solid green; }
 
 footer {
-  height: 20px;
+  height: 4vh;
   background-color: black;
   color: white;
   bottom: 0;
@@ -151,11 +153,16 @@ footer {
   position: fixed;
   text-align: center;
   margin-top: 10px; }
+  footer img {
+    width: 3vw;
+    height: 3vh; }
 
 .navbar {
   border-radius: 0; }
   .navbar .nav-link.logout {
     cursor: pointer; }
+  .navbar .welcome {
+    color: white; }
 
 .favorites-container {
   min-height: 400px;
@@ -165,6 +172,42 @@ footer {
   .favorites-container img {
     height: 100px;
     width: 75px; }
+
+.about-bg {
+  background-image: url("/sun2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh; }
+  .about-bg h1 {
+    font-size: 1.8em;
+    text-align: center; }
+  .about-bg .about.card.card-block {
+    width: 85vw;
+    height: 80vh;
+    margin: 3vh auto 0;
+    font-size: 1.05em;
+    text-align: justify;
+    padding-top: 10vh;
+    border-radius: 5px;
+    line-height: 1.5em;
+    overflow: auto;
+    padding: 15px; }
+    .about-bg .about.card.card-block span {
+      font-size: 1.4em;
+      margin-right: 7px; }
+    .about-bg .about.card.card-block .logo {
+      width: 50vw;
+      height: 18vh;
+      margin: 0 auto;
+      text-align: center; }
+    .about-bg .about.card.card-block img {
+      width: 5vw;
+      height: 5vw;
+      text-align: center;
+      margin: 1vh 9vw;
+      display: inline; }
 
 .login {
   background-image: url("/red-carpet.jpg");
@@ -197,6 +240,41 @@ footer {
     .signup .input-container.card.card-block h1 {
       font-size: 2em;
       text-align: center; }
+
+.theapp-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh; }
+  .theapp-bg h1 {
+    font-size: 1.8em;
+    text-align: center; }
+  .theapp-bg .theapp-container.card.card-block {
+    width: 75vw;
+    height: 40vh;
+    margin: 2vh auto 0;
+    font-size: 1.05em;
+    text-align: justify;
+    padding-top: 10vh;
+    border-radius: 5px;
+    line-height: 1.5em;
+    overflow: auto;
+    padding: 15px; }
+  .theapp-bg .logo.card.card-block {
+    width: 75vw;
+    height: 30vh;
+    text-align: center;
+    margin: 5vh auto 0; }
+    .theapp-bg .logo.card.card-block .row {
+      width: 70vw;
+      height: 18vh;
+      margin: 5px auto; }
+    .theapp-bg .logo.card.card-block img {
+      width: 5vw;
+      height: 5vw;
+      text-align: center;
+      margin: 1vh auto 1vh; }
 
 /*!
  * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
