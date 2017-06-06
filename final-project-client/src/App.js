@@ -96,9 +96,13 @@ class App extends Component {
               <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
               <Route path="/about" component={About} />
               <Route path="/theapp" component={TheApp} />
-              <PrivateRoute path="/userdisplay"  component={UserDisplay} />
-              <PrivateRoute path="/details" component={Details} />
-              <Route component={NotFound} />
+              <PrivateRoute path="/userdisplay"  component={UserDisplay}>
+                <Route path="/*" component={NotFound} />
+                </PrivateRoute>
+              <PrivateRoute path="/details" component={Details}>
+                <Route path="/*" component={NotFound}/>
+                 </PrivateRoute>
+              <Route path="/*/*" component={NotFound} />
             </Switch>
         </div>
 
