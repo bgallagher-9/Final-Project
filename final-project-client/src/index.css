@@ -297,7 +297,10 @@ footer {
       font-size: 2em;
       text-align: center; }
     .login .input-container.card.card-block input {
-      width: 90%; }
+      width: 90%;
+      margin: 0 auto; }
+    .login .input-container.card.card-block button {
+      margin-top: 3vh; }
 
 .signup {
   background-image: url("/side-boxoffice.jpg");
@@ -315,7 +318,10 @@ footer {
       font-size: 2em;
       text-align: center; }
     .signup .input-container.card.card-block input {
-      width: 90%; }
+      width: 90%;
+      margin: 0 auto; }
+    .signup .input-container.card.card-block button {
+      margin-top: 3vh; }
 
 .theapp-bg {
   background-image: url("/hometheater.jpg");
