@@ -59,16 +59,3 @@ app.get('*', (request, response) => {
 app.listen(PORT, () => {
   console.log(`Howdy ho from port ${PORT}`);
 });
-
-
-// router.delete('/api/item/:id', (req, res) => {
-//   const list = data[req.query.bucketId] || [];
-//
-//   let indexOfItemToDelete;
-//   for (let i = 0; i < list.length; i++) {
-//     let { id } = list[i];
-//     if (id === req.params.id) {
-//       indexOfItemToDelete = i;
-//       break;
-//     }
-//   }
