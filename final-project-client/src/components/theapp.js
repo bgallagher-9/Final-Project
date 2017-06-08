@@ -14,6 +14,7 @@ class TheApp extends Component {
 
             My Movie Search App is deployed on Heroku.  Themoviedb.org helps feed this app.
           </p>
+          <p className="app-link" ><a target="_blank" href="https://my-movie-search-app.herokuapp.com">https://my-movie-search-app.herokuapp.com</a></p>
         </div>
         <div className="logo card card-block">
           <div className="row row1">

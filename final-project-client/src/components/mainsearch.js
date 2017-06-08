@@ -106,7 +106,7 @@ class MainSearch extends Component {
       })
       store.dispatch(Object.assign({}, actions.GET_DATA, {
         results: fixedData,
-      })
+      }))
     });
   }
 

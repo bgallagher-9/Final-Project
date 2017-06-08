@@ -310,7 +310,7 @@ footer {
     text-align: center;
     color: white; }
   .theapp-bg .theapp-container.card.card-block {
-    width: 75vw;
+    width: 70vw;
     height: 40vh;
     margin: 2vh auto 0;
     font-size: 1.05em;
@@ -322,7 +322,7 @@ footer {
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.8); }
   .theapp-bg .logo.card.card-block {
-    width: 75vw;
+    width: 70vw;
     height: 30vh;
     text-align: center;
     margin: 5vh auto 0;
@@ -336,6 +336,13 @@ footer {
       height: 5vw;
       text-align: center;
       margin: 1vh auto 1vh; }
+
+.app-link {
+  font-size: 2em;
+  text-decoration: none;
+  color: black;
+  margin: 0 auto;
+  text-align: center; }
 
 /*!
  * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)

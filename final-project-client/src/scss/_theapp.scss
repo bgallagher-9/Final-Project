@@ -13,7 +13,7 @@
   }
 
   .theapp-container.card.card-block {
-    width: 75vw;
+    width: 70vw;
     height: 40vh;
     margin: 2vh auto 0;
     font-size: 1.05em;
@@ -27,7 +27,7 @@
   }
 
   .logo.card.card-block {
-    width: 75vw;
+    width: 70vw;
     height: 30vh;
     text-align: center;
     margin: 5vh auto 0;
@@ -47,6 +47,13 @@
 
     }
   }
+}
 
-
+.app-link {
+  // border: solid 1px blue;
+  font-size: 2em;
+  text-decoration: none;
+  color: black;
+  margin: 0 auto;
+  text-align: center;
 }
