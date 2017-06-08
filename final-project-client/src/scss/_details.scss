@@ -19,7 +19,7 @@
   height: 15px;
   width: 15px;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 15px;
   float: right;
   display: inline;
   margin-right: 20px;
@@ -29,4 +29,9 @@
   height: 100px;
   width: 75px;
   border: 2px solid green;
+}
+
+.card {
+  border: 1px black solid;
+  border-radius: 15px;
 }
