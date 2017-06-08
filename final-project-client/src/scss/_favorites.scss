@@ -1,11 +1,11 @@
 
 .favorites-container {
   height: 80vh;
-  width: 17vw;
+  width: 14vw;
   overflow: auto;
   .favorites-results-container {
-    height: 27vh;
-    width: 16vw;
+    height: 17vh;
+    width: 13vw;
     float: left;
     margin-bottom: 60px;
     text-align: center;
@@ -22,10 +22,11 @@
         color: white;
         background-color: red;
         font-size: .7em;
+        cursor: pointer;
       }
       img {
         min-height: 10vh;
-        min-width: 14vw;
+        min-width: 7vw;
         margin: 0 auto;
       }
     }

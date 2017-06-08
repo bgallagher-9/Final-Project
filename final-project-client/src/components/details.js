@@ -91,7 +91,7 @@ class Details extends Component {
     const favInDeets = fava.favorites.find(fav => fav.idMedia === d.idMedia)
     const favToggle = favInDeets ? <span className="is-favorite" onClick={(evt) => this.removeFavorite(favInDeets, evt)}></span> : <div className="favoritesItem" onClick={(evt) => this.addToFavorites(d, evt)}></div>
     if (d.typeMedia === 'person') {
-      return breakdown =
+      breakdown =
         <div style={ styling }>
           <div className="card card-block detail-card">
             <div className="details-window">
@@ -143,7 +143,7 @@ class Details extends Component {
 
     return (
       <div className="details">
-          <Link to="/userdisplay">Return to results</Link>
+          <Link className="details-link" to="/userdisplay">Return to results</Link>
           {breakdown}
       </div>
     )
