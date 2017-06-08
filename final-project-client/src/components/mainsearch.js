@@ -114,13 +114,11 @@ class MainSearch extends Component {
   handlePrevClick() {
     store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
     this.makeAjaxCall();
-    window.scrollTo(0, 0);
   }
 
   handleNextClick() {
     store.dispatch(Object.assign({}, actions.INCREMENT_PAGE));
     this.makeAjaxCall();
-    window.scrollTo(0, 0);
   }
 
   addToFavorites(x, evt) {
