@@ -39,7 +39,6 @@ class Login extends Component {
     }
     return (
       <div className="login">
-        <div className="tint">
           <div className="card card-block input-container">
             <h1>Login to unleash the power!</h1>
             <input type='text'
@@ -59,7 +58,6 @@ class Login extends Component {
                  <button type="button" className="btn btn-elegant" onClick={() => this.handleSignUpClick()}>Login</button>
              {message}
            </div>
-        </div>
       </div>
     );
   }

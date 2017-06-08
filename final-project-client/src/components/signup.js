@@ -6,7 +6,7 @@ import './../index.css';
 class SignUp extends Component {
 
   handleUNChange(evt) {
-
+    store.dispatch(Object.assign({}, actions.SIGNUP_CHANGE_UN, {value: evt.target.value}));
   }
 
   handlePWChange(evt) {
@@ -24,8 +24,7 @@ class SignUp extends Component {
     })
     .done((data) => {
       store.dispatch(Object.assign({}, actions.SIGNUP_SUCCESS));
-      this.props.history.push('/');
-      // setTimeout(() => {this.props.history.push('/') }, 2500);
+      // this.props.history.push('/');
       this.props.history.push('/userdisplay');
     })
     .fail((xhr, error, responseText) => {

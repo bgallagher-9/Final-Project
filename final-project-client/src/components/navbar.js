@@ -18,11 +18,13 @@ class NavBar extends Component {
   }
 
   render() {
+    // console.log(this);
     let loggedOn;
     if (this.props.isLoggedOn) {
       loggedOn =
         <div className="collapse navbar-collapse justify-content-end" id="naving" >
           <ul className="navbar-nav float-right">
+            <li className="welcome nav-item nav-link">Welcome,   {this.props.welcomeName}</li>
             <Link className="nav-link" to="/about"><li className="nav-item">About</li></Link>
             <Link className="nav-link" to="/theapp"><li className="nav-item">The App</li></Link>
             <Link className="nav-link" to="/userdisplay">Search</Link>

@@ -201,7 +201,10 @@ footer {
     .navbar .nav-link.logout .float-right {
       float: right; }
   .navbar .welcome {
-    color: white; }
+    color: white;
+    float: left;
+    margin-right: 3vw;
+    text-align: center; }
 
 .favorites-container {
   height: 80vh;
