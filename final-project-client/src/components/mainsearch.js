@@ -19,13 +19,11 @@ class MainSearch extends Component {
   componentDidMount() {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState());
-      console.log('main favs mount', store.getState().favorites.favorites.length)
     });
   }
 
   componentWillUnmount() {
     this.unsub();
-    console.log('unmounting');
   }
 
   handleQuery(input) {
@@ -108,15 +106,15 @@ class MainSearch extends Component {
       })
       store.dispatch(Object.assign({}, actions.GET_DATA, {
         results: fixedData,
-      }, console.log(fixedData)));
+      })
     });
   }
+
 
   handlePrevClick() {
     store.dispatch(Object.assign({}, actions.DECREMENT_PAGE));
     this.makeAjaxCall();
     window.scrollTo(0, 0);
-      // console.log('pnd', this.state.pageNumber)
   }
 
   handleNextClick() {
@@ -126,7 +124,6 @@ class MainSearch extends Component {
   }
 
   addToFavorites(x, evt) {
-    console.log(x, 'x')
     $.ajax({
       url: '/api/favorite',
       method: 'POST',
@@ -143,7 +140,6 @@ class MainSearch extends Component {
   }
 
   removeFavorite(x, evt) {
-    console.log('x', x);
     $.ajax({
       url: `/api/favorites/${x._id}`,
       method: 'DELETE'
@@ -159,7 +155,6 @@ class MainSearch extends Component {
   }
 
   render() {
-    console.log('main favs render',this.state.favorites.favorites.length)
     let main = this.state.main;
     let fava = this.state.favorites;
     let searchResults;

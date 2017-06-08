@@ -32,7 +32,6 @@ function auth(app) {
       User.findOne({ username: username }, (err, user) => {
         if (err) { return done(err); }
         if (!user) {
-          console.log('passport !user');
           return done(null, false, { message: 'unknown username' });
         }
         user.checkPassword(password, (err, isMatch) => {
@@ -41,7 +40,6 @@ function auth(app) {
             return done(null, user);
           }
           else {
-            console.log('passport else');
             return done(null, false, { message: 'invalid password' });
           }
         });
@@ -59,7 +57,6 @@ function auth(app) {
   });
 
   app.post('/api/signup', (req, res, next) => {
-    console.log(req.body);
     const username = req.body.username;
     const password = req.body.password;
     if (username === '') {
@@ -89,7 +86,6 @@ function auth(app) {
 );
 
   app.post('/api/login', passport.authenticate('login'), (req, res) => {
-    console.log('successful login!');
     //If the user attempts to login and *is successful*, this code will be reached.
     res.sendStatus(200);
 
@@ -97,7 +93,6 @@ function auth(app) {
   });
 
   app.post('/api/logout', (req, res) => {
-    console.log('logging out');
     req.logout();
     res.sendStatus(204);
   });
@@ -111,13 +106,11 @@ function auth(app) {
     }
     else {
       res.send('abcdefg')
-      // res.sendStatus(401);
     }
   });
 
   app.get('/api/auth', (req, res) => {
     //If the user ia authenticated, express will add the user to the request object. Convenient!
-    console.log('auth', req.user);
     res.send(req.user);
   });
 }

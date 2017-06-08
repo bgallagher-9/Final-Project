@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false}));
 require('./authentify.js')(app);
 
 function favoriteParse(favorites) {
-  console.log(favorites);
   return {
     id: favorites._id,
     nameMedia: favorites.nameMedia,
@@ -28,7 +27,6 @@ function favoriteParse(favorites) {
 }
 
 app.post('/api/favorite', (req, res) => {
-  console.log('server:31 posting', req.body);
   const favorite = new Favorites();
   favorite.nameMedia = req.body.nameMedia;
   favorite.idMedia = req.body.idMedia;
@@ -36,30 +34,21 @@ app.post('/api/favorite', (req, res) => {
   favorite.userId = req.user._id;
   favorite.typeMedia = req.body.typeMedia;
   favorite.save((err, data) => {
-    // res.send(data);
-    // console.log(data);
     res.send(data);
   })
-  // console.log('post data', data)
 });
 
 app.get('/api/favorites', (req, res) => {
-  // console.log('server get req', req)
   Favorites.find({userId: req.user._id})
     .exec(function(err, data) {
       res.send(data);
-      // console.log(data);
     });
 });
 
 app.delete('/api/favorites/:id', (req, res) => {
-  console.log('server delete req', req.params);
-
   Favorites.findByIdAndRemove(req.params.id, (err, data) => {
     res.sendStatus(204);
-    console.log('delete data',data);
   });
-
 });
 
 // All remaining requests return the React app, so it can handle routing.

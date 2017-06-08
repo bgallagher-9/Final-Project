@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch, Link } from 'react-router-dom';
 
 import FavoritesList from './components/favorites.js';
 import Movies from './components/mainsearch.js';
@@ -11,9 +11,6 @@ import NavBar from './components/navbar.js';
 import Details from './components/details.js';
 import NotFound from './components/notfound.js';
 import { store } from './store/store.js';
-
-
-// https://needanappname.herokuapp.com/
 
 class Home extends Component {
   render() {
@@ -90,22 +87,16 @@ class App extends Component {
               </div>
             </div>
             <Switch>
-
               <Route path="/" exact component={Home} />
-              <Route path="/signup" render={(props) => <SignUp {...this.state} history={props.history} />} />
-              <Route path="/login" render={(props) => <Login {...this.state} history={props.history} />} />
-              <Route path="/about" component={About} />
-              <Route path="/theapp" component={TheApp} />
-              <PrivateRoute path="/userdisplay"  component={UserDisplay}>
-                <Route path="/*" component={NotFound} />
-                </PrivateRoute>
-              <PrivateRoute path="/details" component={Details}>
-                <Route path="/*" component={NotFound}/>
-                 </PrivateRoute>
-              <Route path="/*/*" component={NotFound} />
+              <Route path="/signup" exact render={(props) => <SignUp {...this.state} history={props.history} />} />
+              <Route path="/login" exact render={(props) => <Login {...this.state} history={props.history} />} />
+              <Route exact path="/about" component={About} />
+              <Route path="/theapp" exact component={TheApp} />
+              <PrivateRoute path="/userdisplay" exact component={UserDisplay} />
+              <PrivateRoute path="/details" exact component={Details} />
+              <Route component={NotFound} />
             </Switch>
-        </div>
-
+          </div>
         </div>
       </Router>
     );

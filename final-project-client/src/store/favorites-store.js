@@ -14,7 +14,6 @@ const reducer = (state = favState, action) => {
       const favorites = state.favorites.slice();
       favorites.push(action.favorites);
       var stately = Object.assign({}, state, { favorites: favorites });
-      console.log('add_to_favorites', stately)
       return stately
     case constants.DELETE_FAVORITES:
       const copyFaves = state.favorites.slice();

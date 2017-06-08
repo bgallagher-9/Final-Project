@@ -22,16 +22,13 @@ class Login extends Component {
       }
     }).done((data) => {
       store.dispatch(Object.assign({}, actions.LOGIN_SUCCESS));
-      // setTimeout(() => {this.props.history.push('/') }, 2500);
       this.props.history.push('/userdisplay');
     }).fail((xhr, error, responseText) => {
-      // console.log(xhr);
       store.dispatch(Object.assign({}, actions.LOGIN_FAIL, {message: xhr.responseText}));
     });
   }
 
   render() {
-    // console.log(this.props)
     let message;
     if (this.props.loginFailMessage !== '') {
       message = <div className="loginFailMessage">{this.props.loginFailMessage}
@@ -43,7 +40,6 @@ class Login extends Component {
     return (
       <div className="login">
         <div className="tint">
-
           <div className="card card-block input-container">
             <h1>Login to unleash the power!</h1>
             <input type='text'
@@ -62,9 +58,10 @@ class Login extends Component {
                    ></input>
                  <button type="button" className="btn btn-elegant" onClick={() => this.handleSignUpClick()}>Login</button>
              {message}
-        </div>
+           </div>
         </div>
       </div>
-
-            ); } }
+    );
+  }
+}
 export default Login;

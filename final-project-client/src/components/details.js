@@ -32,13 +32,11 @@ class Details extends Component {
   componentDidMount() {
     this.unsub = store.subscribe(() => {
       this.setState(store.getState());
-      console.log('deets mount favs', store.getState().favorites.favorites)
     })
   }
 
   componentWillUnmount() {
     this.unsub()
-    console.log('unmounting');
   }
 
   addToFavorites(evt) {
@@ -60,7 +58,6 @@ class Details extends Component {
 
   removeFavorite(d, evt) {
     console.trace();
-    console.log('d', d._id, d);
     $.ajax({
       url: `/api/favorites/${d._id}`,
       method: 'DELETE'
@@ -71,9 +68,7 @@ class Details extends Component {
   };
 
   render() {
-    console.log('deets favs render', this.state.favorites.favorites.length);
     let d = this.state.details.details
-    // let main = this.state.main;
     let fava = this.state.favorites;
     let results = this.state.details.results;
     let url = '/no-image.png';
@@ -145,7 +140,6 @@ class Details extends Component {
           </div>
         </div>
       }
-
 
     return (
       <div className="details">
