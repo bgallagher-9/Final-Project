@@ -46,7 +46,7 @@ class FavoritesList extends Component {
   render() {
     let faveList;
     if (this.state.favorites.length === 0) {
-      faveList = <p>You don't have any favorites yet.</p>
+      faveList = <p className="zero-faves">You don't have any favorites yet.</p>
     }
     else {
       const faves = this.state.favorites.map((x, i) => {

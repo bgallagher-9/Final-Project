@@ -224,6 +224,9 @@ footer {
   font-size: 1.2em;
   padding-top: 2vh; }
 
+.zero-faves {
+  color: white; }
+
 .about-bg {
   background-image: url("/simpsontv.jpg");
   background-position: center;
