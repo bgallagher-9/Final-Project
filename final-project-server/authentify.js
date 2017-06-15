@@ -3,7 +3,7 @@ const session = require('express-session');
 const User = require('./models/users.js');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const mainPage = require('./../final-project-client/build');
+const path = require('path');
 
 function auth(app) {
 
@@ -108,7 +108,7 @@ function auth(app) {
     }
     else {
       // res.send('abcdefg')
-        res.sendFile(path.resolve(__dirname, 'mainPage', 'index.html'));
+        res.sendFile(path.resolve(__dirname, '../final-project-client/build/', 'index.html'));
     }
   });
 
