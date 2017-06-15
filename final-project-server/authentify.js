@@ -105,7 +105,9 @@ function auth(app) {
       next();
     }
     else {
-      res.send('abcdefg')
+      // res.send('abcdefg')
+
+        res.sendFile(path.resolve(__dirname, '../final-project-client/build', 'index.html'));
     }
   });
 
