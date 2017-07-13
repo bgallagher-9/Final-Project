@@ -17,6 +17,7 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
+    "fs-extra": "^3.0.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
     "react-dev-utils": "^3.0.2",
