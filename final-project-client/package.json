@@ -21,6 +21,7 @@
     "acorn-dynamic-import": "^2.0.2",
     "enhanced-resolve": "^3.3.0",
     "fs-extra": "^3.0.1",
+    "json-loader": "^0.5.4",
     "json5": "^0.5.1",
     "jsonfile": "^3.0.1",
     "load-runner": "^1.0.3",
