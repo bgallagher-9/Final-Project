@@ -19,6 +19,7 @@
   "devDependencies": {
     "fs-extra": "^3.0.1",
     "jsonfile": "^3.0.1",
+    "load-runner": "^1.0.3",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
     "react-dev-utils": "^3.0.2",
