@@ -26,6 +26,7 @@
     "jsonfile": "^3.0.1",
     "load-runner": "^1.0.3",
     "loader-runner": "^2.3.0",
+    "memory-fs": "^0.4.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
     "react-dev-utils": "^3.0.2",
