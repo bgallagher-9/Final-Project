@@ -37,6 +37,7 @@
     "npm-run-all": "^4.0.2",
     "num2fraction": "^1.2.2",
     "postcss": "^6.0.6",
+    "postcss-value-parser": "^3.3.0",
     "react-dev-utils": "^3.0.2",
     "react-scripts": "^1.0.10",
     "source-list-map": "^2.0.0",
