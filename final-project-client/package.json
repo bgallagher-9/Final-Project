@@ -34,6 +34,7 @@
     "loader-runner": "^2.3.0",
     "memory-fs": "^0.4.1",
     "node-sass-chokidar": "0.0.3",
+    "normalize-range": "^0.1.2",
     "npm-run-all": "^4.0.2",
     "num2fraction": "^1.2.2",
     "postcss": "^6.0.6",
